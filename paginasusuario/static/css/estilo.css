@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 0;
+}
+
+.cv-container {
+    max-width: 1000px;
+    margin: 30px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+/* ===== HEADER ===== */
+.cv-header {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 20px;
+}
+
+.cv-header img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #0077b6;
+}
+
+.cv-header h1 {
+    margin: 0;
+    color: #023047;
+}
+
+.cv-header p {
+    margin: 5px 0;
+    color: #555;
+}
+
+/* ===== BOTONES ===== */
+.menu {
+    margin-top: 20px;
+}
+
+.menu button {
+    background: #0077b6;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.menu button:hover {
+    background: #005f8f;
+}
+
+/* ===== SECCIONES ===== */
+.seccion {
+    display: none;
+    margin-top: 30px;
+}
+
+.seccion h2 {
+    color: #0077b6;
+    border-bottom: 2px solid #0077b6;
+    padding-bottom: 5px;
+}
+
+.card {
+    background: #f9f9f9;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 8px;
+}
+
+.card p {
+    margin: 4px 0;
+}
+
+/* ===== IMÁGENES ===== */
+.card img {
+    max-width: 300px;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
