@@ -1,9 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template.loader import get_template
-from weasyprint import HTML
-import tempfile
-
+from xhtml2pdf import pisa
 from .models import DatosPersonales
 
 
@@ -34,8 +32,9 @@ def descargar_pdf(request):
     persona = DatosPersonales.objects.first()
 
     if not persona:
-        return HttpResponse("No hay datos registrados", status=404)
+        return HttpResponse("No hay datos para generar el PDF")
 
+    template = get_template("hojadevida.html")
     context = {
         "persona": persona,
         "experiencias": persona.experiencias.filter(activarparaqueveaenfront=True),
@@ -46,17 +45,15 @@ def descargar_pdf(request):
         "ventas": persona.ventas.filter(activarparaqueveaenfront=True),
     }
 
-    template = get_template("hojadevida.html")
     html = template.render(context)
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="hoja_de_vida.pdf"'
 
-    with tempfile.NamedTemporaryFile(delete=True) as output:
-        HTML(string=html).write_pdf(output.name)
-        output.seek(0)
+    pisa_status = pisa.CreatePDF(html, dest=response)
 
-        response = HttpResponse(
-            output.read(),
-            content_type="application/pdf"
-        )
-        response["Content-Disposition"] = 'attachment; filename="Hoja_de_Vida.pdf"'
-        return response
+    if pisa_status.err:
+        return HttpResponse("Error al generar el PDF")
+
+    return response
+
 
