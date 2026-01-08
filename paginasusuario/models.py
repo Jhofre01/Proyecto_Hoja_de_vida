@@ -1,4 +1,6 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
+
 
 
 class DatosPersonales(models.Model):
@@ -29,7 +31,8 @@ class DatosPersonales(models.Model):
     direcciondomiciliaria = models.CharField(max_length=50)
     sitioweb = models.CharField(max_length=60)
 
-    foto = models.ImageField(upload_to='perfil/', null=True, blank=True)
+    foto = CloudinaryField('foto', null=True, blank=True)
+
 
     def __str__(self):
         return f"{self.nombres} {self.apellidos}"
@@ -77,7 +80,8 @@ class Reconocimiento(models.Model):
     activarparaqueveaenfront = models.BooleanField(default=True)
     rutacertificado = models.CharField(max_length=100)
 
-    imagen = models.ImageField(upload_to='reconocimientos/', null=True, blank=True)
+    imagen = CloudinaryField('imagen', null=True, blank=True)
+
 
 
 class CursoRealizado(models.Model):
@@ -101,7 +105,8 @@ class CursoRealizado(models.Model):
     activarparaqueveaenfront = models.BooleanField(default=True)
     rutacertificado = models.CharField(max_length=100)
 
-    imagen = models.ImageField(upload_to='cursos/', null=True, blank=True)
+    imagen = CloudinaryField('imagen', null=True, blank=True)
+
 
 
 class ProductoAcademico(models.Model):
@@ -116,7 +121,8 @@ class ProductoAcademico(models.Model):
     descripcion = models.CharField(max_length=100)
 
     activarparaqueveaenfront = models.BooleanField(default=True)
-    imagen = models.ImageField(upload_to='productos_academicos/', null=True, blank=True)
+    imagen = CloudinaryField('imagen', null=True, blank=True)
+
 
 
 class ProductoLaboral(models.Model):
@@ -131,7 +137,8 @@ class ProductoLaboral(models.Model):
     descripcion = models.CharField(max_length=100)
 
     activarparaqueveaenfront = models.BooleanField(default=True)
-    imagen = models.ImageField(upload_to='productos_laborales/', null=True, blank=True)
+    imagen = CloudinaryField('imagen', null=True, blank=True)
+
 
 
 class VentaGarage(models.Model):
@@ -147,5 +154,6 @@ class VentaGarage(models.Model):
     valordebien = models.DecimalField(max_digits=7, decimal_places=2)
 
     activarparaqueveaenfront = models.BooleanField(default=True)
-    imagen = models.ImageField(upload_to='ventas/', null=True, blank=True)
+    imagen = CloudinaryField('imagen', null=True, blank=True)
+
 
