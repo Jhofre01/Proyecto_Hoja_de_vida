@@ -34,7 +34,7 @@ def descargar_pdf(request):
     if not persona:
         return HttpResponse("No hay datos para generar el PDF")
 
-    template = get_template("hojadevida.html")
+    template = get_template("hojadevida_pdf.html")
     context = {
         "persona": persona,
         "experiencias": persona.experiencias.filter(activarparaqueveaenfront=True),

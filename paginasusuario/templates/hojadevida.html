@@ -80,10 +80,38 @@ p {
 strong {
     color: #333;
 }
+
+/* ================= GATOS DECORATIVOS ================= */
+
+.gato-web {
+    position: fixed;
+    top: 40%;
+    width: 90px;
+    opacity: 0.25;
+    z-index: 0;
+}
+
+.gato-izq {
+    left: -15px;
+}
+
+.gato-der {
+    right: -15px;
+}
+
+/* Para que el contenido quede por encima */
+.container {
+    position: relative;
+    z-index: 2;
+}
+
 </style>
 </head>
 
 <body>
+<!-- GATOS DECORATIVOS WEB -->
+<img src="https://res.cloudinary.com/demo/image/upload/v1700000000/gato_negro.png" class="gato-web gato-izq">
+<img src="https://res.cloudinary.com/demo/image/upload/v1700000000/gato_negro.png" class="gato-web gato-der">
 
 <div class="container">
 
