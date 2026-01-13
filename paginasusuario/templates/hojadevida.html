@@ -119,21 +119,24 @@ strong {
 /* ================= GATOS DECORATIVOS ================= */
 .gato-web {
     position: fixed;
-    top: 35%;
-    width: 220px;
-    opacity: 0.18;
+    top: 30%;
+    width: 320px;       /* tamaño fijo */
+    height: auto;
+    opacity: 0.35;      /* más visibles */
     z-index: 0;
+    pointer-events: none;
 }
 
 .gato-izq {
-    left: -80px;
+    left: -120px;
     transform: rotate(270deg);
 }
 
 .gato-der {
-    right: -80px;
+    right: -120px;
     transform: rotate(90deg);
 }
+
 
 
 
@@ -168,18 +171,23 @@ h2 {
 }
 
 .card {
-    border: none;
     background: #ffffff;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    border-left: 4px solid #2563eb;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    margin-bottom: 25px;
 }
 
+
 .card p {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 8px;
-    font-size: 14px;
+    background: #f9fafb;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 6px;
 }
+
 
 .card strong {
     color: #334155;
@@ -190,6 +198,30 @@ h2 {
     margin-top: 12px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ================= RECUADROS DE INFORMACIÓN ================= */
+
+.header div {
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+}
+
+.header div p {
+    background: #ffffff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 6px;
+}
+
+@media (max-width: 900px) {
+    .gato-web {
+        width: 300px;
+        opacity: 0.3;
+    }
 }
 
 </style>
