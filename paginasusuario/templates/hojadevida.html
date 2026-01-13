@@ -119,25 +119,77 @@ strong {
 /* ================= GATOS DECORATIVOS ================= */
 .gato-web {
     position: fixed;
-    top: 30%;
+    top: 35%;
     width: 220px;
     opacity: 0.18;
-    z-index: 1;
+    z-index: 0;
 }
 
 .gato-izq {
-    left: 20px;
+    left: -80px;
+    transform: rotate(270deg);
 }
 
 .gato-der {
-    right: 20px;
+    right: -80px;
+    transform: rotate(90deg);
 }
+
+
 
 h2 {
     color: #1e3a8a;
     border-bottom: 2px solid #e5e7eb;
     padding-bottom: 6px;
     margin-top: 30px;
+}
+
+/* ================= DATOS PERSONALES ================= */
+
+.header div p {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 10px;
+    padding: 4px 0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.header div p strong {
+    color: #1e293b;
+    font-weight: 600;
+}
+
+/* Título nombre */
+.header h1 {
+    color: #1e40af;
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.card {
+    border: none;
+    background: #ffffff;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    border-left: 4px solid #2563eb;
+}
+
+.card p {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.card strong {
+    color: #334155;
+}
+
+.card img {
+    max-width: 260px;
+    margin-top: 12px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 </style>
