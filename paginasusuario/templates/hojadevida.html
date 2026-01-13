@@ -7,24 +7,29 @@
 <style>
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #f4f6f9;
+    background: linear-gradient(120deg, #eef2f7, #f9fbfd);
     margin: 0;
     padding: 30px;
 }
 
+/* CONTENEDOR */
 .container {
     max-width: 1100px;
     margin: auto;
     background: white;
     padding: 30px;
-    border-radius: 10px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    position: relative;
+    z-index: 2;
 }
 
+/* HEADER */
 .header {
     display: flex;
-    gap: 20px;
+    gap: 25px;
     align-items: flex-start;
-    border-bottom: 2px solid #ddd;
+    border-bottom: 2px solid #e0e0e0;
     padding-bottom: 20px;
 }
 
@@ -32,45 +37,62 @@ body {
     width: 150px;
     height: 150px;
     object-fit: cover;
-    border-radius: 10px;
-    border: 1px solid #ccc;
+    border-radius: 12px;
+    border: 2px solid #ddd;
 }
 
-h1 {
-    margin-top: 0;
+.header h1 {
+    margin: 0;
+    color: #0d6efd;
+}
+
+/* BOTONES */
+.section-buttons {
+    text-align: center;
+    margin: 20px 0;
 }
 
 .section-buttons button {
-    margin: 5px;
-    padding: 10px 15px;
+    margin: 6px;
+    padding: 10px 18px;
     border: none;
     background: #0d6efd;
     color: white;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .section-buttons button:hover {
     background: #084298;
 }
 
+/* SECCIONES */
 .section {
     display: none;
     margin-top: 25px;
 }
 
+.section h2 {
+    color: #0d6efd;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+/* CARDS */
 .card {
     border: 1px solid #ddd;
     padding: 15px;
     margin-bottom: 15px;
-    border-radius: 8px;
+    border-radius: 10px;
     background: #fafafa;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
 .card img {
     max-width: 280px;
     margin-top: 10px;
-    border-radius: 5px;
+    border-radius: 6px;
 }
 
 p {
@@ -82,7 +104,6 @@ strong {
 }
 
 /* ================= GATOS DECORATIVOS ================= */
-
 .gato-web {
     position: fixed;
     top: 40%;
@@ -92,26 +113,20 @@ strong {
 }
 
 .gato-izq {
-    left: -15px;
+    left: -20px;
 }
 
 .gato-der {
-    right: -15px;
+    right: -20px;
 }
-
-/* Para que el contenido quede por encima */
-.container {
-    position: relative;
-    z-index: 2;
-}
-
 </style>
 </head>
 
 <body>
-<!-- GATOS DECORATIVOS WEB -->
-<img src="https://res.cloudinary.com/demo/image/upload/v1700000000/gato_negro.png" class="gato-web gato-izq">
-<img src="https://res.cloudinary.com/demo/image/upload/v1700000000/gato_negro.png" class="gato-web gato-der">
+
+<!-- GATOS DECORATIVOS (PUEDES CAMBIAR LA URL POR TU CLOUDINARY) -->
+<img src="https://res.cloudinary.com/dfglycyoq/image/upload/v1768276638/gato_izquierdo_fs93vq.jpg" class="gato-web gato-izq">
+<img src="https://res.cloudinary.com/dfglycyoq/image/upload/v1768276625/gato_derecho_cdqtzb.webp" class="gato-web gato-der">
 
 <div class="container">
 
