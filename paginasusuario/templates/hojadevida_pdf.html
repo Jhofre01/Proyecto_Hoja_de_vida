@@ -5,141 +5,78 @@
 <title>Hoja de Vida - PDF</title>
 
 <style>
-/* ================= CONFIGURACIÓN GENERAL PDF ================= */
 body {
-    font-family: "Helvetica", "Arial", sans-serif;
-    font-size: 11.5px;
-    margin: 25px 30px;
-    color: #111;
-    line-height: 1.45;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    margin: 25px;
+    color: #000;
 }
 
-/* ================= TÍTULOS ================= */
+/* Títulos */
 h1 {
-    font-size: 20px;
-    margin-bottom: 6px;
-    color: #0f172a;
+    font-size: 18px;
+    margin-bottom: 8px;
 }
 
 h2 {
     font-size: 14px;
-    margin-top: 22px;
-    margin-bottom: 8px;
-    padding-bottom: 4px;
-
-    border-bottom: 2px solid #cbd5e1;
-    color: #1e293b;
+    margin-top: 20px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #000;
 }
 
-/* ================= CABECERA ================= */
+/* Cabecera */
 .header {
-    display: flex;
-    gap: 18px;
-    align-items: flex-start;
     margin-bottom: 15px;
 }
 
 .header img {
     width: 120px;
     height: 120px;
-    object-fit: cover;
-
-    border-radius: 8px;
-    border: 1px solid #555;
+    border: 1px solid #000;
 }
 
-/* ================= SECCIONES ================= */
+/* Secciones */
 .section {
-    margin-top: 18px;
+    margin-top: 15px;
 }
 
-/* ================= TARJETAS ================= */
+/* Tarjetas */
 .card {
-    padding: 12px 14px;
-    margin-bottom: 12px;
-
-    border-left: 5px solid #1e293b;
-    border-radius: 6px;
-
-    background: #ffffff;
+    border: 1px solid #000;
+    padding: 8px;
+    margin-bottom: 10px;
 }
 
-
-/* Texto dentro de tarjetas */
-.card p {
-    margin: 2px 0;
-}
-
-/* ================= IMÁGENES DE SECCIÓN ================= */
-.card img {
-    max-width: 260px;
-    margin-top: 8px;
-
-    border-radius: 6px;
-    border: 1px solid #999;
-}
-
-/* ================= TEXTO ================= */
+/* Texto */
 p {
     margin: 3px 0;
 }
 
 strong {
-    color: #0f172a;
-    font-weight: 600;
+    font-weight: bold;
 }
 
-/* ================= MENSAJES VACÍOS ================= */
+/* Imágenes */
+.card img {
+    max-width: 250px;
+    border: 1px solid #000;
+    margin-top: 6px;
+}
+
+/* Mensajes vacíos */
 .mensaje-vacio {
     text-align: center;
-    padding: 10px;
+    font-style: italic;
     margin: 10px 0;
-
-    font-size: 11px;
-    font-weight: 600;
-    color: #374151;
-
-    border: 1px dashed #9ca3af;
-    background: #f3f4f6;
-    border-radius: 6px;
 }
 
-/* ================= SALTO DE PÁGINA ================= */
-.section {
-    page-break-inside: avoid;
-}
-
+/* Evitar cortes feos */
 .card {
     page-break-inside: avoid;
 }
-
-/* ================= BLOQUE DATOS PERSONALES ================= */
-.header-box {
-    padding: 15px;
-    margin-bottom: 20px;
-
-    border: 2px solid #1e293b;
-    border-radius: 10px;
-
-    background: #f8fafc;
-}
-
-/* Nombre destacado */
-.header-box h1 {
-    font-size: 22px;
-    margin-bottom: 10px;
-    color: #020617;
-}
-
-/* Datos personales en columnas */
-.header-box p {
-    display: inline-block;
-    width: 48%;
-    vertical-align: top;
-    margin: 3px 0;
-}
-
 </style>
+
 
 </head>
 
