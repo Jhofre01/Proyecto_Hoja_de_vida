@@ -17,13 +17,14 @@ body {
 .container {
     max-width: 1100px;
     margin: auto;
-    background: #ffffff;
-    padding: 40px;
-    border-radius: 14px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    background: #f4f7fb;   /* color suave */
+    padding: 45px;
+    border-radius: 18px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.35);
     position: relative;
     z-index: 2;
 }
+
 
 
 /* HEADER */
@@ -36,12 +37,14 @@ body {
 }
 
 .header img {
-    width: 160px;
-    height: 160px;
+    width: 180px;
+    height: 180px;
     object-fit: cover;
-    border-radius: 12px;
-    border: 3px solid #0d6efd;
+    border-radius: 16px;
+    border: 4px solid #2563eb;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
 }
+
 
 .header h1 {
     margin: 0;
@@ -91,21 +94,7 @@ body {
     padding-bottom: 5px;
 }
 
-/* CARDS */
-.card {
-    border-left: 5px solid #2563eb;
-    padding: 18px 20px;
-    margin-bottom: 18px;
-    border-radius: 10px;
-    background: #f9fafb;
-    box-shadow: 0 5px 12px rgba(0,0,0,0.08);
-}
 
-.card img {
-    max-width: 320px;
-    margin-top: 12px;
-    border-radius: 6px;
-}
 
 
 p {
@@ -119,13 +108,14 @@ strong {
 /* ================= GATOS DECORATIVOS ================= */
 .gato-web {
     position: fixed;
-    top: 30%;
-    width: 320px;       /* tamaño fijo */
-    height: auto;
-    opacity: 0.35;      /* más visibles */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+    opacity: 0.55;
     z-index: 0;
     pointer-events: none;
 }
+
 
 .gato-izq {
     left: -120px;
@@ -172,12 +162,13 @@ h2 {
 
 .card {
     background: #ffffff;
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    margin-bottom: 25px;
+    padding: 22px;
+    border-radius: 14px;
+    border-left: 6px solid #2563eb;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    margin-bottom: 30px;
 }
+
 
 
 .card p {
@@ -194,20 +185,24 @@ h2 {
 }
 
 .card img {
-    max-width: 260px;
-    margin-top: 12px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    width: 100%;
+    max-width: 420px;
+    display: block;
+    margin: 15px auto 0;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
 }
+
 
 /* ================= RECUADROS DE INFORMACIÓN ================= */
 
 .header div {
-    background: #f8fafc;
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid #e2e8f0;
+    background: #eaf0ff;
+    padding: 25px;
+    border-radius: 14px;
+    border: 1px solid #c7d2fe;
 }
+
 
 .header div p {
     background: #ffffff;
