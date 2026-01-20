@@ -233,6 +233,25 @@ h2 {
     margin-bottom: 6px;
 }
 
+/* ================= MENSAJES SIN DATOS ================= */
+.mensaje-vacio {
+    text-align: center;
+    margin: 25px auto;
+    padding: 14px 20px;
+
+    color: #1e293b;                 /* texto oscuro legible */
+    font-weight: 600;
+    font-size: 15px;
+
+    background: rgba(255, 255, 255, 0.85); /* fondo claro sin afectar al gato */
+    border-radius: 12px;
+
+    border: 1px dashed #94a3b8;
+    max-width: 500px;
+
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
 
 
 </style>
@@ -303,7 +322,7 @@ h2 {
     <p><strong>Funciones:</strong> {{ e.descripcionfunciones }}</p>
 </div>
 {% empty %}
-<p>No hay experiencia registrada</p>
+<p class="mensaje-vacio">No hay experiencia registrada</p>
 {% endfor %}
 </div>
 
@@ -326,7 +345,7 @@ h2 {
     {% endif %}
 </div>
 {% empty %}
-<p>No hay reconocimientos</p>
+<p class="mensaje-vacio">No hay reconocimientos</p>
 {% endfor %}
 </div>
 
@@ -352,7 +371,7 @@ h2 {
     {% endif %}
 </div>
 {% empty %}
-<p>No hay cursos registrados</p>
+<p class="mensaje-vacio">No hay cursos registrados</p>
 {% endfor %}
 </div>
 
@@ -370,7 +389,7 @@ h2 {
     {% endif %}
 </div>
 {% empty %}
-<p>No hay productos académicos</p>
+<p class="mensaje-vacio">No hay productos académicos</p>
 {% endfor %}
 </div>
 
@@ -388,7 +407,7 @@ h2 {
     {% endif %}
 </div>
 {% empty %}
-<p>No hay productos laborales</p>
+<p class="mensaje-vacio">No hay productos laborales</p>
 {% endfor %}
 </div>
 
@@ -407,7 +426,7 @@ h2 {
     {% endif %}
 </div>
 {% empty %}
-<p>No hay productos en venta</p>
+<p class="mensaje-vacio">No hay productos en venta</p>
 {% endfor %}
 </div>
 <!-- ================= DESCARGAR PDF ================= -->
