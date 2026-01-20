@@ -5,60 +5,114 @@
 <title>Hoja de Vida - PDF</title>
 
 <style>
+/* ================= CONFIGURACIÓN GENERAL PDF ================= */
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 11px;
-    margin: 20px;
-    color: #000;
+    font-family: "Helvetica", "Arial", sans-serif;
+    font-size: 11.5px;
+    margin: 25px 30px;
+    color: #111;
+    line-height: 1.45;
 }
 
+/* ================= TÍTULOS ================= */
 h1 {
-    margin-bottom: 5px;
+    font-size: 20px;
+    margin-bottom: 6px;
+    color: #0f172a;
 }
 
 h2 {
-    margin-top: 25px;
-    border-bottom: 1px solid #444;
-    padding-bottom: 3px;
+    font-size: 14px;
+    margin-top: 22px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+
+    border-bottom: 2px solid #cbd5e1;
+    color: #1e293b;
 }
 
+/* ================= CABECERA ================= */
 .header {
     display: flex;
-    gap: 20px;
+    gap: 18px;
     align-items: flex-start;
+    margin-bottom: 15px;
 }
 
 .header img {
     width: 120px;
     height: 120px;
     object-fit: cover;
-    border: 1px solid #333;
+
+    border-radius: 8px;
+    border: 1px solid #555;
 }
 
+/* ================= SECCIONES ================= */
 .section {
-    margin-top: 15px;
+    margin-top: 18px;
 }
 
+/* ================= TARJETAS ================= */
 .card {
-    border: 1px solid #ccc;
-    padding: 10px;
+    padding: 10px 12px;
     margin-bottom: 10px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+
+    background: #fafafa;
 }
 
+/* Texto dentro de tarjetas */
+.card p {
+    margin: 2px 0;
+}
+
+/* ================= IMÁGENES DE SECCIÓN ================= */
 .card img {
-    max-width: 250px;
+    max-width: 260px;
     margin-top: 8px;
+
+    border-radius: 6px;
     border: 1px solid #999;
 }
 
+/* ================= TEXTO ================= */
 p {
     margin: 3px 0;
 }
 
 strong {
-    color: #000;
+    color: #0f172a;
+    font-weight: 600;
+}
+
+/* ================= MENSAJES VACÍOS ================= */
+.mensaje-vacio {
+    text-align: center;
+    padding: 10px;
+    margin: 10px 0;
+
+    font-size: 11px;
+    font-weight: 600;
+    color: #374151;
+
+    border: 1px dashed #9ca3af;
+    background: #f3f4f6;
+    border-radius: 6px;
+}
+
+/* ================= SALTO DE PÁGINA ================= */
+.section {
+    page-break-inside: avoid;
+}
+
+.card {
+    page-break-inside: avoid;
 }
 </style>
+
 </head>
 
 <body>
