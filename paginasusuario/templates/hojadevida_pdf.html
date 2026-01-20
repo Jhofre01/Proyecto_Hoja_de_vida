@@ -55,14 +55,15 @@ h2 {
 
 /* ================= TARJETAS ================= */
 .card {
-    padding: 10px 12px;
-    margin-bottom: 10px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
 
-    border: 1px solid #d1d5db;
+    border-left: 5px solid #1e293b;
     border-radius: 6px;
 
-    background: #fafafa;
+    background: #ffffff;
 }
+
 
 /* Texto dentro de tarjetas */
 .card p {
@@ -111,6 +112,33 @@ strong {
 .card {
     page-break-inside: avoid;
 }
+
+/* ================= BLOQUE DATOS PERSONALES ================= */
+.header-box {
+    padding: 15px;
+    margin-bottom: 20px;
+
+    border: 2px solid #1e293b;
+    border-radius: 10px;
+
+    background: #f8fafc;
+}
+
+/* Nombre destacado */
+.header-box h1 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #020617;
+}
+
+/* Datos personales en columnas */
+.header-box p {
+    display: inline-block;
+    width: 48%;
+    vertical-align: top;
+    margin: 3px 0;
+}
+
 </style>
 
 </head>
@@ -118,7 +146,8 @@ strong {
 <body>
 
 <!-- ================= DATOS PERSONALES ================= -->
-<div class="header">
+<div class="header header-box">
+
     {% if persona.foto %}
         <img src="{{ persona.foto.url }}">
     {% endif %}
@@ -174,7 +203,9 @@ strong {
     <p><strong>Funciones:</strong> {{ e.descripcionfunciones }}</p>
 </div>
 {% empty %}
-<p>No hay experiencia registrada</p>
+<div class="mensaje-vacio">
+    No hay experiencia registrada
+</div>
 {% endfor %}
 
 <!-- ================= RECONOCIMIENTOS ================= -->
@@ -195,8 +226,11 @@ strong {
     {% endif %}
 </div>
 {% empty %}
-<p>No hay reconocimientos</p>
+<div class="mensaje-vacio">
+    No hay reconocimientos registrados
+</div>
 {% endfor %}
+
 
 <!-- ================= CURSOS ================= -->
 <h2>Cursos Realizados</h2>
@@ -219,7 +253,9 @@ strong {
     {% endif %}
 </div>
 {% empty %}
-<p>No hay cursos registrados</p>
+<div class="mensaje-vacio">
+    No hay cursos registrados
+</div>
 {% endfor %}
 
 <!-- ================= PRODUCTOS ACADÉMICOS ================= -->
@@ -235,7 +271,9 @@ strong {
     {% endif %}
 </div>
 {% empty %}
-<p>No hay productos académicos</p>
+<div class="mensaje-vacio">
+    No hay productos académicos
+</div>
 {% endfor %}
 
 <!-- ================= PRODUCTOS LABORALES ================= -->
@@ -251,7 +289,9 @@ strong {
     {% endif %}
 </div>
 {% empty %}
-<p>No hay productos laborales</p>
+<div class="mensaje-vacio">
+    No hay productos laborales
+</div>
 {% endfor %}
 
 <!-- ================= VENTA GARAGE ================= -->
@@ -268,7 +308,9 @@ strong {
     {% endif %}
 </div>
 {% empty %}
-<p>No hay productos en venta</p>
+<div class="mensaje-vacio">
+    No hay productos en venta
+</div>
 {% endfor %}
 
 </body>
