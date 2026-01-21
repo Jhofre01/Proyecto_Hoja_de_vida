@@ -25,23 +25,7 @@ h2 {
     border-bottom: 1px solid #000;
 }
 
-/* Cabecera */
-.header {
-    margin-bottom: 15px;
-}
-
-.header img {
-    width: 120px;
-    height: 120px;
-    border: 1px solid #000;
-}
-
-/* Secciones */
-.section {
-    margin-top: 15px;
-}
-
-/* Tarjetas */
+/* ===== TARJETAS (RECUADROS) ===== */
 .card {
     border: 1px solid #000;
     padding: 8px;
@@ -57,25 +41,42 @@ strong {
     font-weight: bold;
 }
 
-/* Imágenes */
+/* ===== IMÁGENES ===== */
 .card img {
-    max-width: 250px;
-    border: 1px solid #000;
+    display: block;
+    width: 100%;          /* SE AJUSTA AL RECUADRO */
+    max-width: 240px;     /* límite seguro */
+    height: auto;
     margin-top: 6px;
+    border: 1px solid #000;
 }
 
-/* Mensajes vacíos */
-.mensaje-vacio {
-    text-align: center;
-    font-style: italic;
-    margin: 10px 0;
+/* ===== DATOS PERSONALES ===== */
+.tabla-datos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
 }
 
-/* Evitar cortes feos */
+.tabla-datos td {
+    border: 1px solid #000;
+    padding: 5px;
+    vertical-align: top;
+    font-size: 11px;
+}
+
+.tabla-datos .label {
+    width: 35%;
+    font-weight: bold;
+    background: #f0f0f0;
+}
+
+/* Evitar cortes */
 .card {
     page-break-inside: avoid;
 }
 </style>
+
 
 
 </head>
@@ -83,41 +84,82 @@ strong {
 <body>
 
 <!-- ================= DATOS PERSONALES ================= -->
-<div class="header header-box">
 
-    {% if persona.foto %}
-        <img src="{{ persona.foto.url }}">
-    {% endif %}
+<h1>{{ persona.nombres }} {{ persona.apellidos }}</h1>
 
-    <div>
-        <h1>{{ persona.nombres }} {{ persona.apellidos }}</h1>
-
-        <p><strong>Perfil:</strong> {{ persona.descripcionperfil }}</p>
-        <p><strong>Cédula:</strong> {{ persona.numerocedula }}</p>
-        <p><strong>Nacionalidad:</strong> {{ persona.nacionalidad }}</p>
-        <p><strong>Lugar de nacimiento:</strong> {{ persona.lugarnacimiento }}</p>
-        <p><strong>Fecha de nacimiento:</strong> {{ persona.fechanacimiento|date:"d/m/Y" }}</p>
-        <p><strong>Sexo:</strong> {{ persona.get_sexo_display }}</p>
-        <p><strong>Estado civil:</strong> {{ persona.estadocivil }}</p>
-        <p><strong>Licencia de conducir:</strong> {{ persona.licenciaconducir }}</p>
-
-        <p><strong>Teléfono convencional:</strong>
-            {{ persona.telefonoconvencional|default:"No registrado" }}
-        </p>
-        <p><strong>Teléfono fijo:</strong>
-            {{ persona.telefonofijo|default:"No registrado" }}
-        </p>
-
-        <p><strong>Dirección domiciliaria:</strong> {{ persona.direcciondomiciliaria }}</p>
-        <p><strong>Dirección de trabajo:</strong>
-            {{ persona.direcciontrabajo|default:"No registrada" }}
-        </p>
-
-        <p><strong>Sitio web:</strong>
-            {{ persona.sitioweb|default:"No disponible" }}
-        </p>
-    </div>
+{% if persona.foto %}
+<div class="card">
+    <img src="{{ persona.foto.url }}">
 </div>
+{% endif %}
+
+<table class="tabla-datos">
+    <tr>
+        <td class="label">Perfil</td>
+        <td>{{ persona.descripcionperfil }}</td>
+    </tr>
+
+    <tr>
+        <td class="label">Cédula</td>
+        <td>{{ persona.numerocedula }}</td>
+    </tr>
+
+    <tr>
+        <td class="label">Nacionalidad</td>
+        <td>{{ persona.nacionalidad }}</td>
+    </tr>
+
+    <tr>
+        <td class="label">Lugar de nacimiento</td>
+        <td>{{ persona.lugarnacimiento }}</td>
+    </tr>
+
+    <tr>
+        <td class="label">Fecha de nacimiento</td>
+        <td>{{ persona.fechanacimiento|date:"d/m/Y" }}</td>
+    </tr>
+
+    <tr>
+        <td class="label">Sexo</td>
+        <td>{{ persona.get_sexo_display }}</td>
+    </tr>
+
+    <tr>
+        <td class="label">Estado civil</td>
+        <td>{{ persona.estadocivil }}</td>
+    </tr>
+
+    <tr>
+        <td class="label">Licencia de conducir</td>
+        <td>{{ persona.licenciaconducir }}</td>
+    </tr>
+
+    <tr>
+        <td class="label">Teléfono convencional</td>
+        <td>{{ persona.telefonoconvencional|default:"No registrado" }}</td>
+    </tr>
+
+    <tr>
+        <td class="label">Teléfono fijo</td>
+        <td>{{ persona.telefonofijo|default:"No registrado" }}</td>
+    </tr>
+
+    <tr>
+        <td class="label">Dirección domiciliaria</td>
+        <td>{{ persona.direcciondomiciliaria }}</td>
+    </tr>
+
+    <tr>
+        <td class="label">Dirección de trabajo</td>
+        <td>{{ persona.direcciontrabajo|default:"No registrada" }}</td>
+    </tr>
+
+    <tr>
+        <td class="label">Sitio web</td>
+        <td>{{ persona.sitioweb|default:"No disponible" }}</td>
+    </tr>
+</table>
+
 
 <!-- ================= EXPERIENCIA LABORAL ================= -->
 <h2>Experiencia Laboral</h2>
