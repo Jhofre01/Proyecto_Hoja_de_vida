@@ -14,12 +14,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ===============================
 # SECURITY
 # ===============================
-SECRET_KEY = os.environ.get(
-    "SECRET_KEY",
-    "unsafe-secret-key"
-)
+SECRET_KEY = "django-insecure-hoja-de-vida-2025-jhofre"
 
-DEBUG = 'RENDER' not in os.environ
+DEBUG = True
+
 
 ALLOWED_HOSTS = []
 
@@ -84,12 +82,13 @@ WSGI_APPLICATION = 'hojadevida.wsgi.application'
 # DATABASE
 # ===============================
 DATABASES = {
-    'default': dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+    'default': dj_database_url.parse(
+        "postgresql://basehojadevida_user:LA1Y5mKNYWToIUQz7QNmUlNLlS9E7Ulc@dpg-d5mnh5be5dus73el0ce0-a.virginia-postgres.render.com/basehojadevida",
         conn_max_age=600,
         ssl_require=True
     )
 }
+
 
 
 # ===============================
@@ -148,11 +147,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # ===============================
 # CLOUDINARY CONFIG
 # ===============================
+
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+    'CLOUD_NAME': 'dfglycyoq',
+    'API_KEY': '225322155144452',
+    'API_SECRET': 'mpMFBgO4vroVpERT5CDJdiHCl_M',
 }
 
-CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
+CLOUDINARY_URL = 'cloudinary://225322155144452:mpMFBgO4vroVpERT5CDJdiHCl_M@dfglycyoq'
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
