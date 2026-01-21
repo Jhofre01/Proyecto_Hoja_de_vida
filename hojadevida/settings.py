@@ -27,6 +27,16 @@ if RENDER_EXTERNAL_HOSTNAME:
 
 ALLOWED_HOSTS.append('.onrender.com')
 
+import cloudinary
+
+cloudinary.config(
+    cloud_name="dfglycyoq",
+    api_key="225322155144452",
+    api_secret="mpMFBgO4vroVpERT5CDJdiHCl_M",
+    secure=True
+)
+
+
 # ===============================
 # APPLICATIONS
 # ===============================
