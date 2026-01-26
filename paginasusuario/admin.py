@@ -1,5 +1,7 @@
 from django.contrib import admin
 from .models import *
+from .models import SeccionPagina
+
 
 class ValidatedAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
@@ -14,6 +16,7 @@ admin.site.register(CursoRealizado, ValidatedAdmin)
 admin.site.register(ProductoAcademico)  # no tiene fechas
 admin.site.register(ProductoLaboral, ValidatedAdmin)
 admin.site.register(VentaGarage)        # no tiene fechas
+admin.site.register(SeccionPagina)
 
 
 

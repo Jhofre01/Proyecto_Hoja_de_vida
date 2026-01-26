@@ -187,4 +187,18 @@ class VentaGarage(models.Model):
     activarparaqueveaenfront = models.BooleanField(default=True)
     imagen = CloudinaryField('imagen', null=True, blank=True)
 
+class SeccionPagina(models.Model):
+    mostrar_experiencia = models.BooleanField(default=True)
+    mostrar_reconocimientos = models.BooleanField(default=True)
+    mostrar_cursos = models.BooleanField(default=True)
+    mostrar_productos_academicos = models.BooleanField(default=True)
+    mostrar_productos_laborales = models.BooleanField(default=True)
+    mostrar_venta_garage = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = "Configuración de Secciones"
+        verbose_name_plural = "Configuración de Secciones"
+
+    def __str__(self):
+        return "Control de secciones del sitio"
 
