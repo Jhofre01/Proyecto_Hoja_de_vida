@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
-from .models import DatosPersonales
+from .models import DatosPersonales, SeccionPagina
 
 
 def paginabienvenida(request):
@@ -11,12 +11,14 @@ def paginabienvenida(request):
 
 def hojadevida(request):
     persona = DatosPersonales.objects.first()
+    config = SeccionPagina.objects.first()  # 👈 NUEVO
 
     if not persona:
         return render(request, "hojadevida.html")
 
     context = {
         "persona": persona,
+        "config": config,  # 👈 NUEVO
         "experiencias": persona.experiencias.filter(activarparaqueveaenfront=True),
         "reconocimientos": persona.reconocimientos.filter(activarparaqueveaenfront=True),
         "cursos": persona.cursos.filter(activarparaqueveaenfront=True),
@@ -30,6 +32,7 @@ def hojadevida(request):
 
 def descargar_pdf(request):
     persona = DatosPersonales.objects.first()
+    config = SeccionPagina.objects.first()  # 👈 NUEVO
 
     if not persona:
         return HttpResponse("No hay datos para generar el PDF")
@@ -37,6 +40,7 @@ def descargar_pdf(request):
     template = get_template("hojadevida_pdf.html")
     context = {
         "persona": persona,
+        "config": config,  # 👈 NUEVO
         "experiencias": persona.experiencias.filter(activarparaqueveaenfront=True),
         "reconocimientos": persona.reconocimientos.filter(activarparaqueveaenfront=True),
         "cursos": persona.cursos.filter(activarparaqueveaenfront=True),

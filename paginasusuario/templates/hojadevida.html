@@ -292,15 +292,34 @@ h2 {
 
 <!-- ================= BOTONES ================= -->
 <div class="section-buttons">
-    <button onclick="mostrar('exp')">Experiencia</button>
-    <button onclick="mostrar('rec')">Reconocimientos</button>
-    <button onclick="mostrar('cur')">Cursos</button>
-    <button onclick="mostrar('pa')">Productos Académicos</button>
-    <button onclick="mostrar('pl')">Productos Laborales</button>
-    <button onclick="mostrar('vg')">Venta Garage</button>
+    {% if config.mostrar_experiencia %}
+        <button onclick="mostrar('exp')">Experiencia</button>
+    {% endif %}
+
+    {% if config.mostrar_reconocimientos %}
+        <button onclick="mostrar('rec')">Reconocimientos</button>
+    {% endif %}
+
+    {% if config.mostrar_cursos %}
+        <button onclick="mostrar('cur')">Cursos</button>
+    {% endif %}
+
+    {% if config.mostrar_productos_academicos %}
+        <button onclick="mostrar('pa')">Productos Académicos</button>
+    {% endif %}
+
+    {% if config.mostrar_productos_laborales %}
+        <button onclick="mostrar('pl')">Productos Laborales</button>
+    {% endif %}
+
+    {% if config.mostrar_venta_garage %}
+        <button onclick="mostrar('vg')">Venta Garage</button>
+    {% endif %}
 </div>
 
+
 <!-- ================= EXPERIENCIA LABORAL ================= -->
+{% if config.mostrar_experiencia %} 
 <div id="exp" class="section">
 <h2>Experiencia Laboral</h2>
 {% for e in experiencias %}
@@ -325,8 +344,10 @@ h2 {
 <p class="mensaje-vacio">No hay experiencia registrada</p>
 {% endfor %}
 </div>
+{% endif %}
 
 <!-- ================= RECONOCIMIENTOS ================= -->
+{% if config.mostrar_reconocimientos %}
 <div id="rec" class="section">
 <h2>Reconocimientos</h2>
 {% for r in reconocimientos %}
@@ -348,8 +369,10 @@ h2 {
 <p class="mensaje-vacio">No hay reconocimientos</p>
 {% endfor %}
 </div>
+{% endif %}
 
 <!-- ================= CURSOS ================= -->
+{% if config.mostrar_cursos %}
 <div id="cur" class="section">
 <h2>Cursos Realizados</h2>
 {% for c in cursos %}
@@ -374,8 +397,10 @@ h2 {
 <p class="mensaje-vacio">No hay cursos registrados</p>
 {% endfor %}
 </div>
+{% endif %}
 
 <!-- ================= PRODUCTOS ACADÉMICOS ================= -->
+{% if config.mostrar_productos_academicos %}
 <div id="pa" class="section">
 <h2>Productos Académicos</h2>
 {% for p in productos_academicos %}
@@ -392,8 +417,10 @@ h2 {
 <p class="mensaje-vacio">No hay productos académicos</p>
 {% endfor %}
 </div>
+{% endif %}
 
 <!-- ================= PRODUCTOS LABORALES ================= -->
+{% if config.mostrar_productos_laborales %}
 <div id="pl" class="section">
 <h2>Productos Laborales</h2>
 {% for p in productos_laborales %}
@@ -410,8 +437,10 @@ h2 {
 <p class="mensaje-vacio">No hay productos laborales</p>
 {% endfor %}
 </div>
+{% endif %}
 
 <!-- ================= VENTA GARAGE ================= -->
+{% if config.mostrar_venta_garage %}
 <div id="vg" class="section">
 <h2>Venta Garage</h2>
 {% for v in ventas %}
@@ -429,6 +458,8 @@ h2 {
 <p class="mensaje-vacio">No hay productos en venta</p>
 {% endfor %}
 </div>
+{% endif %}
+
 <!-- ================= DESCARGAR PDF ================= -->
 <div style="text-align:center; margin-top:20px;">
     <a href="{% url 'descargar_pdf' %}"
