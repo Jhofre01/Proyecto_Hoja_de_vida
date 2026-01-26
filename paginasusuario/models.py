@@ -1,5 +1,7 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
+from django.core.exceptions import ValidationError
+from django.utils import timezone
 
 
 
@@ -32,7 +34,10 @@ class DatosPersonales(models.Model):
     sitioweb = models.CharField(max_length=60)
 
     foto = CloudinaryField('foto', null=True, blank=True)
-
+    def clean(self):
+        hoy = timezone.now().date()
+        if self.fechanacimiento > hoy:
+            raise ValidationError({'fechanacimiento': 'La fecha de nacimiento no puede ser futura.'})
 
     def __str__(self):
         return f"{self.nombres} {self.apellidos}"
@@ -61,6 +66,15 @@ class ExperienciaLaboral(models.Model):
     activarparaqueveaenfront = models.BooleanField(default=True)
     rutacertificado = models.CharField(max_length=100)
 
+    def clean(self):
+        hoy = timezone.now().date()
+        if self.fechainiciogestion and self.fechainiciogestion > hoy:
+            raise ValidationError({'fechainiciogestion': 'La fecha de inicio no puede ser futura.'})
+        if self.fechafingestion and self.fechafingestion > hoy:
+            raise ValidationError({'fechafingestion': 'La fecha de finalización no puede ser futura.'})
+        if self.fechainiciogestion and self.fechafingestion and self.fechafingestion < self.fechainiciogestion:
+            raise ValidationError({'fechafingestion': 'La fecha de finalización no puede ser anterior a la de inicio.'})
+
 
 class Reconocimiento(models.Model):
     persona = models.ForeignKey(
@@ -81,6 +95,10 @@ class Reconocimiento(models.Model):
     rutacertificado = models.CharField(max_length=100)
 
     imagen = CloudinaryField('imagen', null=True, blank=True)
+    
+    def clean(self):
+        if self.fechareconocimiento > timezone.now().date():
+            raise ValidationError({'fechareconocimiento': 'La fecha del reconocimiento no puede ser futura.'})
 
 
 
@@ -106,6 +124,15 @@ class CursoRealizado(models.Model):
     rutacertificado = models.CharField(max_length=100)
 
     imagen = CloudinaryField('imagen', null=True, blank=True)
+
+    def clean(self):
+        hoy = timezone.now().date()
+        if self.fechainicio > hoy:
+            raise ValidationError({'fechainicio': 'La fecha de inicio no puede ser futura.'})
+        if self.fechafin > hoy:
+            raise ValidationError({'fechafin': 'La fecha de fin no puede ser futura.'})
+        if self.fechafin < self.fechainicio:
+            raise ValidationError({'fechafin': 'La fecha de fin no puede ser anterior a la de inicio.'})
 
 
 
@@ -138,6 +165,10 @@ class ProductoLaboral(models.Model):
 
     activarparaqueveaenfront = models.BooleanField(default=True)
     imagen = CloudinaryField('imagen', null=True, blank=True)
+
+    def clean(self):
+        if self.fechaproducto > timezone.now().date():
+            raise ValidationError({'fechaproducto': 'La fecha del producto no puede ser futura.'})
 
 
 

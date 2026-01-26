@@ -1,14 +1,20 @@
 from django.contrib import admin
 from .models import *
 
+class ValidatedAdmin(admin.ModelAdmin):
+    def save_model(self, request, obj, form, change):
+        obj.full_clean()  # ✅ Ejecuta las validaciones del modelo
+        super().save_model(request, obj, form, change)
 
-admin.site.register(DatosPersonales)
-admin.site.register(ExperienciaLaboral)
-admin.site.register(Reconocimiento)
-admin.site.register(CursoRealizado)
-admin.site.register(ProductoAcademico)
-admin.site.register(ProductoLaboral)
-admin.site.register(VentaGarage)
+# Registros normales o validados según el caso
+admin.site.register(DatosPersonales, ValidatedAdmin)
+admin.site.register(ExperienciaLaboral, ValidatedAdmin)
+admin.site.register(Reconocimiento, ValidatedAdmin)
+admin.site.register(CursoRealizado, ValidatedAdmin)
+admin.site.register(ProductoAcademico)  # no tiene fechas
+admin.site.register(ProductoLaboral, ValidatedAdmin)
+admin.site.register(VentaGarage)        # no tiene fechas
+
 
 
 
