@@ -163,7 +163,7 @@ strong {
 {% endif %}
 
 
-{% if "exp" in mostrar %}
+{% if "exp" in mostrar and config.mostrar_experiencia %}
 <h2>Experiencia Laboral</h2>
 {% for e in experiencias %}
 <div class="card">
@@ -211,7 +211,7 @@ strong {
 
 
 
-{% if "rec" in mostrar %}
+{% if "rec" in mostrar and config.mostrar_reconocimientos %}
 <h2>Reconocimientos</h2>
 {% for r in reconocimientos %}
 <div class="card">
@@ -254,7 +254,7 @@ strong {
 
 
 
-{% if "cur" in mostrar %}
+{% if "cur" in mostrar and config.mostrar_cursos %}
 <h2>Cursos Realizados</h2>
 {% for c in cursos %}
 <div class="card">
@@ -301,7 +301,7 @@ strong {
 
 
 
-{% if "pa" in mostrar %}
+{% if "pa" in mostrar and config.mostrar_productos_academicos %}
 <h2>Productos Académicos</h2>
 {% for p in productos_academicos %}
 <div class="card">
@@ -337,7 +337,7 @@ strong {
 
 
 
-{% if "pl" in mostrar %}
+{% if "pl" in mostrar and config.mostrar_productos_laborales %}
 <h2>Productos Laborales</h2>
 {% for p in productos_laborales %}
 <div class="card">
@@ -376,7 +376,7 @@ strong {
 
 
 
-{% if "vg" in mostrar %}
+{% if "vg" in mostrar and config.mostrar_venta_garage %}
 <h2>Venta Garage</h2>
 {% for v in ventas %}
 <div class="card">
