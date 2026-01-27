@@ -80,13 +80,24 @@ class ExperienciaLaboral(models.Model):
 
 
 class Reconocimiento(models.Model):
+
+    TIPO_RECONOCIMIENTO = [
+        ('ACA', 'Académico'),
+        ('PUB', 'Público'),
+        ('PRI', 'Privado'),
+    ]
+
     persona = models.ForeignKey(
         DatosPersonales,
         on_delete=models.CASCADE,
         related_name="reconocimientos"
     )
 
-    tiporeconocimiento = models.CharField(max_length=100)
+    tiporeconocimiento = models.CharField(
+        max_length=3,
+        choices=TIPO_RECONOCIMIENTO
+    )
+
     fechareconocimiento = models.DateField()
     descripcionreconocimiento = models.CharField(max_length=100)
     entidadpatrocinadora = models.CharField(max_length=100)
@@ -98,10 +109,13 @@ class Reconocimiento(models.Model):
     rutacertificado = models.CharField(max_length=100)
 
     imagen = CloudinaryField('imagen', null=True, blank=True)
-    
+
     def clean(self):
         if self.fechareconocimiento > timezone.now().date():
-            raise ValidationError({'fechareconocimiento': 'La fecha del reconocimiento no puede ser futura.'})
+            raise ValidationError({
+                'fechareconocimiento': 'La fecha del reconocimiento no puede ser futura.'
+            })
+
 
 
 

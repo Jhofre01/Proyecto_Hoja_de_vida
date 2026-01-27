@@ -563,6 +563,34 @@ h2 {
 }
 
 
+/* ===== BADGES DE TIPO ===== */
+
+.badge-academico {
+    background: #2563eb; /* azul */
+}
+
+.badge-publico {
+    background: #16a34a; /* verde */
+}
+
+.badge-privado {
+    background: #dc2626; /* rojo */
+}
+
+
+/* ===== BADGES ESTADO VENTA ===== */
+
+.badge-bueno {
+    background: #16a34a; /* verde */
+}
+
+.badge-regular {
+    background: #facc15; /* amarillo */
+    color: #1f2937;
+}
+
+
+
 
 </style>
 </head>
@@ -742,9 +770,15 @@ h2 {
 
             <div class="card-divider"></div>
 
-            <span class="badge">
-                {{ r.tiporeconocimiento }}
+            <span class="badge 
+                {% if r.tiporeconocimiento == 'ACA' %}badge-academico
+                {% elif r.tiporeconocimiento == 'PUB' %}badge-publico
+                {% elif r.tiporeconocimiento == 'PRI' %}badge-privado
+                {% endif %}
+            ">
+                {{ r.get_tiporeconocimiento_display }}
             </span>
+
 
             <div class="card-meta">
                 <p><strong>Contacto:</strong> {{ r.nombrecontactoauspicia }}</p>
@@ -932,18 +966,43 @@ h2 {
 {% for v in ventas %}
 <div class="card fondo-{{ forloop.counter|default:1 }}">
     <div class="card-content">
-        <div class="card-data">
-            <p><strong>Producto:</strong> {{ v.nombreproducto }}</p>
-            <p><strong>Estado:</strong> {{ v.get_estadoproducto_display }}</p>
-            <p><strong>Valor:</strong> ${{ v.valordebien }}</p>
-            <p><strong>Descripción:</strong> {{ v.descripcion }}</p>
-        </div> 
+
+        <!-- TEXTO -->
+        <div class="card-text">
+
+            <!-- ESTADO ARRIBA DERECHA -->
+            <div class="card-date 
+                {% if v.estadoproducto == 'B' %}badge-bueno
+                {% elif v.estadoproducto == 'R' %}badge-regular
+                {% endif %}
+            ">
+                {{ v.get_estadoproducto_display }}
+            </div>
+
+            <div class="card-main-title">
+                {{ v.nombreproducto }}
+            </div>
+
+            <div class="card-divider"></div>
+
+            <div class="card-text-body">
+                {{ v.descripcion }}
+            </div>
+
+            <div class="card-meta">
+                <p><strong>Valor:</strong> ${{ v.valordebien }}</p>
+            </div>
+
+        </div>
+
+        <!-- IMAGEN -->
         {% if v.imagen %}
         <div class="card-image">
             <img src="{{ v.imagen.url }}">
-        </div> 
+        </div>
         {% endif %}
-    </div> 
+
+    </div>
 </div>
 {% empty %}
 <p class="mensaje-vacio">No hay productos en venta</p>
