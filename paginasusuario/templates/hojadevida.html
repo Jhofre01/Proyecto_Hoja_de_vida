@@ -638,81 +638,106 @@ h2 {
 
 
 <!-- ================= EXPERIENCIA LABORAL ================= -->
-{% if config.mostrar_experiencia %} 
+{% if config.mostrar_experiencia %}
 <div id="exp" class="section">
 <h2>Experiencia Laboral</h2>
+
 {% for e in experiencias %}
-<div class="card fondo-{{ forloop.counter|default:1 }}">
+<div class="card fondo-{{ forloop.counter }}">
+
     <div class="card-content">
-        <div class="card-data" style="grid-column: 1 / -1; display:block">
+
+        <!-- 75% TEXTO -->
+        <div class="card-text">
+
+            <!-- FECHA -->
+            <div class="card-date">
+                📅 {{ e.fechainicio|date:"d M, Y" }} – {{ e.fechafin|date:"d M, Y"|default:"Actualidad" }}
+            </div>
+
             <!-- TÍTULO -->
             <div class="card-main-title">
-                {{ e.cargodesempenado }}
+                {{ e.cargo }}
             </div>
 
             <!-- SUBTÍTULO -->
             <div class="card-subtitle">
-                {{ e.nombreempresa }} ({{ e.lugarempresa }})
+                {{ e.empresa }} – {{ e.lugar }}
             </div>
 
             <!-- TEXTO -->
-            <div class="card-text">
-                {{ e.descripcionfunciones }}
+            <div class="card-text-body">
+                {{ e.funciones }}
             </div>
 
+            <!-- DIVISOR -->
             <div class="card-divider"></div>
 
-            <!-- DATOS SECUNDARIOS -->
+            <!-- DATOS -->
             <div class="card-meta">
-                <p>{{ e.emailempresa }}</p>
-                <p>{{ e.sitiowebempresa }}</p>
-                <p>{{ e.nombrecontactoempresarial }}</p>
-                <p>{{ e.telefonocontactoempresarial }}</p>
-                <p>
-                    {{ e.fechainiciogestion|date:"d/m/Y"|default:"No especificado" }}
-                    –
-                    {{ e.fechafingestion|date:"d/m/Y"|default:"Actualidad" }}
-                </p>
+                <p><strong>Email:</strong> {{ e.emailempresa }}</p>
+                <p><strong>Teléfono:</strong> {{ e.telefonoempresa }}</p>
+                <p><strong>Sitio web:</strong> {{ e.sitioweb }}</p>
             </div>
+
         </div>
+
+        <!-- 25% IMAGEN -->
         {% if e.imagen %}
         <div class="card-image">
             <img src="{{ e.imagen.url }}">
         </div>
         {% endif %}
+
     </div>
 </div>
+
 {% empty %}
 <p class="mensaje-vacio">No hay experiencia registrada</p>
 {% endfor %}
 </div>
 {% endif %}
 
+
 <!-- ================= RECONOCIMIENTOS ================= -->
 {% if config.mostrar_reconocimientos %}
 <div id="rec" class="section">
 <h2>Reconocimientos</h2>
+
 {% for r in reconocimientos %}
-<div class="card fondo-{{ forloop.counter|default:1 }}">
+<div class="card fondo-{{ forloop.counter }}">
+
     <div class="card-content">
-        <div class="card-data" style="grid-column: 1 / -1; display:block">
-            <span class="badge">
-                {{ r.tiporeconocimiento }}
-            </span>
-            <div class="card-main-title">
-                {{ r.descripcionreconocimiento }}
+
+        <div class="card-text">
+
+            <!-- FECHA -->
+            <div class="card-date">
+                📅 {{ r.fecha|date:"d M, Y" }}
             </div>
 
+            <!-- BADGE -->
+            <span class="badge">
+                {{ r.tipo }}
+            </span>
+
+            <!-- TÍTULO -->
+            <div class="card-main-title">
+                {{ r.descripcion }}
+            </div>
+
+            <!-- SUBTÍTULO -->
             <div class="card-subtitle">
-                {{ r.entidadpatrocinadora }}
+                {{ r.entidad }}
             </div>
 
             <div class="card-divider"></div>
 
+            <!-- DATOS -->
             <div class="card-meta">
-                <p>{{ r.fechareconocimiento|date:"d/m/Y" }}</p>
-                <p>{{ r.nombrecontactoauspicia }}</p>
-                <p>{{ r.telefonocontactoauspicia }}</p>
+                <p><strong>Contacto:</strong> {{ r.nombrecontacto }}</p>
+                <p><strong>Teléfono:</strong> {{ r.telefono }}</p>
+                <p><strong>Email:</strong> {{ r.email }}</p>
             </div>
 
         </div>
@@ -722,119 +747,155 @@ h2 {
             <img src="{{ r.imagen.url }}">
         </div>
         {% endif %}
+
     </div>
 </div>
+
 {% empty %}
-<p class="mensaje-vacio">No hay reconocimientos</p>
+<p class="mensaje-vacio">No hay reconocimientos registrados</p>
 {% endfor %}
 </div>
 {% endif %}
+
 
 <!-- ================= CURSOS ================= -->
 {% if config.mostrar_cursos %}
 <div id="cur" class="section">
 <h2>Cursos Realizados</h2>
+
 {% for c in cursos %}
 <div class="card fondo-{{ forloop.counter|default:1 }}">
-    <div class="card-content">
-        <div class="card-data" style="grid-column: 1 / -1; display:block">
 
+    <div class="card-content">
+
+        <!-- 75% TEXTO -->
+        <div class="card-text">
+
+            <!-- FECHA ARRIBA DERECHA -->
+            <div class="card-date">
+                📅 {{ c.fechainicio|date:"d M, Y" }} – {{ c.fechafin|date:"d M, Y" }}
+            </div>
+
+            <!-- BADGE -->
             <span class="badge">
                 {{ c.totalhoras }} horas
             </span>
 
+            <!-- TÍTULO -->
             <div class="card-main-title">
                 {{ c.nombrecurso }}
             </div>
 
+            <!-- SUBTÍTULO -->
             <div class="card-subtitle">
                 {{ c.entidadpatrocinadora }}
             </div>
 
-            <div class="card-text">
+            <!-- TEXTO PRINCIPAL (SIN LABEL) -->
+            <div class="card-text-body">
                 {{ c.descripcioncurso }}
             </div>
 
+            <!-- DIVISOR -->
             <div class="card-divider"></div>
 
+            <!-- DATOS CON LABELS -->
             <div class="card-meta">
-                <p>{{ c.fechainicio|date:"d/m/Y" }}</p>
-                <p>{{ c.fechafin|date:"d/m/Y" }}</p>
-                <p>{{ c.nombrecontactoauspicia }}</p>
-                <p>{{ c.telefonocontactoauspicia }}</p>
-                <p>{{ c.emailempresa }}</p>
+                <p><strong>Contacto:</strong> {{ c.nombrecontactoauspicia }}</p>
+                <p><strong>Teléfono:</strong> {{ c.telefonocontactoauspicia }}</p>
+                <p><strong>Email:</strong> {{ c.emailempresa }}</p>
             </div>
 
         </div>
 
+        <!-- 25% IMAGEN -->
         {% if c.imagen %}
         <div class="card-image">
             <img src="{{ c.imagen.url }}">
         </div>
         {% endif %}
+
     </div>
 </div>
+
 {% empty %}
 <p class="mensaje-vacio">No hay cursos registrados</p>
 {% endfor %}
 </div>
 {% endif %}
 
+
 <!-- ================= PRODUCTOS ACADÉMICOS ================= -->
 {% if config.mostrar_productos_academicos %}
 <div id="pa" class="section">
 <h2>Productos Académicos</h2>
+
 {% for p in productos_academicos %}
-<div class="card fondo-{{ forloop.counter|default:1 }}">
+<div class="card fondo-{{ forloop.counter }}">
+
     <div class="card-content">
-        <div class="card-data" style="grid-column: 1 / -1; display:block">
+
+        <div class="card-text">
 
             <div class="card-main-title">
-                {{ p.nombreproducto }}
+                {{ p.nombre }}
             </div>
 
-            <div class="card-text">
+            <div class="card-subtitle">
+                {{ p.tipo }}
+            </div>
+
+            <div class="card-text-body">
                 {{ p.descripcion }}
             </div>
 
+            <div class="card-divider"></div>
+
             <div class="card-meta">
-                <p>{{ p.clasificador }}</p>
+                <p><strong>Clasificador:</strong> {{ p.clasificador }}</p>
             </div>
 
         </div>
-    
+
         {% if p.imagen %}
         <div class="card-image">
             <img src="{{ p.imagen.url }}">
         </div>
         {% endif %}
+
     </div>
 </div>
+
 {% empty %}
 <p class="mensaje-vacio">No hay productos académicos</p>
 {% endfor %}
 </div>
 {% endif %}
 
+
 <!-- ================= PRODUCTOS LABORALES ================= -->
 {% if config.mostrar_productos_laborales %}
 <div id="pl" class="section">
 <h2>Productos Laborales</h2>
+
 {% for p in productos_laborales %}
-<div class="card fondo-{{ forloop.counter|default:1 }}">
+<div class="card fondo-{{ forloop.counter }}">
+
     <div class="card-content">
-        <div class="card-data" style="grid-column: 1 / -1; display:block">
+
+        <div class="card-text">
+
+            <!-- FECHA -->
+            <div class="card-date">
+                📅 {{ p.fecha|date:"d M, Y" }}
+            </div>
 
             <div class="card-main-title">
-                {{ p.nombreproducto }}
+                {{ p.nombre }}
             </div>
 
-            <div class="card-text">
+            <div class="card-text-body">
                 {{ p.descripcion }}
-            </div>
-
-            <div class="card-meta">
-                <p>{{ p.fechaproducto|date:"d/m/Y" }}</p>
             </div>
 
         </div>
@@ -842,15 +903,18 @@ h2 {
         {% if p.imagen %}
         <div class="card-image">
             <img src="{{ p.imagen.url }}">
-        </div> 
+        </div>
         {% endif %}
-    </div> 
+
+    </div>
 </div>
+
 {% empty %}
 <p class="mensaje-vacio">No hay productos laborales</p>
 {% endfor %}
 </div>
 {% endif %}
+
 
 <!-- ================= VENTA GARAGE ================= -->
 {% if config.mostrar_venta_garage %}
