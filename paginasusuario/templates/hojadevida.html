@@ -516,10 +516,9 @@ h2 {
     font-weight: 700;
     color: #e5e7eb;
 
+    background: rgba(15, 23, 42, 0.8);
     padding: 6px 10px;
     border-radius: 10px;
-
-    background: transparent; /* ⬅️ CLAVE */
 }
 
 
@@ -974,8 +973,8 @@ h2 {
 
             <!-- ESTADO ARRIBA DERECHA -->
             <div class="card-date 
-                {% if v.estadoproducto == 'B' %}badge-bueno
-                {% elif v.estadoproducto == 'R' %}badge-regular
+                {% if v.estadoproducto == 'BUENO' %}badge-bueno
+                {% elif v.estadoproducto == 'REGULAR' %}badge-regular
                 {% endif %}
             ">
                 {{ v.get_estadoproducto_display }}
