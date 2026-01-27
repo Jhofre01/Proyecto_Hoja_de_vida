@@ -184,22 +184,28 @@ h2 {
 
 .card-data {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* SOLO 2 columnas */
-    grid-auto-rows: min-content;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;     /* CLAVE */
+    align-content: start;
 
     column-gap: 40px;
-    row-gap: 6px;
+    row-gap: 4px;
 }
+
 
 
 
 
 /* Texto dentro de cards */
 .card-data p {
-    color: #e5e7eb;        /* contenido claro */
+    color: #e5e7eb;        /* texto claro */
     font-size: 14px;
     line-height: 1.35;
+    margin: 0;
+    align-self: start;
 }
+
+
 
 /* Etiquetas */
 .card-data strong {
@@ -233,16 +239,6 @@ h2 {
 }
 
 
-
-
-
-
-
-
-.card p {
-    color: #111827;   /* casi negro */
-    font-size: 14px;
-}
 
 .card strong {
     color: #e5e7eb; /* gris claro legible */
