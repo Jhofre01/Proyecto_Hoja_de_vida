@@ -31,6 +31,8 @@ def hojadevida(request):
 
 
 def descargar_pdf(request):
+    secciones = request.GET.get("secciones", "")
+    mostrar = secciones.split(",") if secciones else []
     persona = DatosPersonales.objects.first()
     config = SeccionPagina.objects.first()  # 👈 NUEVO
 
@@ -47,6 +49,7 @@ def descargar_pdf(request):
         "productos_academicos": persona.productos_academicos.filter(activarparaqueveaenfront=True),
         "productos_laborales": persona.productos_laborales.filter(activarparaqueveaenfront=True),
         "ventas": persona.ventas.filter(activarparaqueveaenfront=True),
+        "mostrar": mostrar,
     }
 
     html = template.render(context)
