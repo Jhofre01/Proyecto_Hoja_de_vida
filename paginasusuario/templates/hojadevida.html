@@ -435,6 +435,41 @@ h2 {
 }
 
 
+/* ================= BARRA INFERIOR PDF ================= */
+
+.bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(6px);
+
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+
+    z-index: 9999;
+    box-shadow: 0 -6px 25px rgba(0,0,0,0.45);
+}
+
+.bottom-bar button {
+    background: #16a34a;
+    color: white;
+    border: none;
+    padding: 12px 26px;
+    border-radius: 22px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.bottom-bar button:hover {
+    background: #15803d;
+}
+
+
 
 </style>
 </head>
@@ -708,20 +743,37 @@ h2 {
 </div>
 {% endif %}
 
-<!-- ================= DESCARGAR PDF ================= -->
-<div style="text-align:center; margin-top:20px;">
-    <a href="{% url 'descargar_pdf' %}"
-       style="
-           background:#198754;
-           color:white;
-           padding:10px 20px;
-           border-radius:6px;
-           text-decoration:none;
-           font-weight:bold;
-       ">
-        📄 Descargar Hoja de Vida en PDF
-    </a>
+<div class="bottom-bar">
+    <button onclick="abrirModalPDF()">📄 Descargar PDF</button>
 </div>
+
+<div class="image-lightbox" id="pdfModal">
+    <div style="
+        background:#0f172a;
+        padding:30px;
+        border-radius:20px;
+        min-width:300px;
+        color:white;
+    ">
+        <h3 style="margin-top:0;">Incluir en el PDF</h3>
+
+        <label><input type="checkbox" value="dp" checked> Datos personales</label><br>
+        <label><input type="checkbox" value="exp" checked> Experiencia laboral</label><br>
+        <label><input type="checkbox" value="rec" checked> Reconocimientos</label><br>
+        <label><input type="checkbox" value="cur" checked> Cursos</label><br>
+        <label><input type="checkbox" value="pa" checked> Productos académicos</label><br>
+        <label><input type="checkbox" value="pl" checked> Productos laborales</label><br>
+        <label><input type="checkbox" value="vg" checked> Venta garage</label>
+
+        <div style="margin-top:20px; text-align:right;">
+            <button onclick="cerrarModalPDF()">Cancelar</button>
+            <button onclick="generarPDF()" style="background:#16a34a;color:white;">
+                Generar PDF
+            </button>
+        </div>
+    </div>
+</div>
+
 
 </div>
 
@@ -769,6 +821,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 </script>
+<script>
+function abrirModalPDF() {
+    document.getElementById("pdfModal").classList.add("active");
+}
+
+function cerrarModalPDF() {
+    document.getElementById("pdfModal").classList.remove("active");
+}
+
+function generarPDF() {
+    const seleccion = [];
+    document.querySelectorAll('#pdfModal input:checked')
+        .forEach(cb => seleccion.push(cb.value));
+
+    const params = seleccion.join(",");
+    window.location.href = "{% url 'descargar_pdf' %}?secciones=" + params;
+}
+</script>
+
 
 
 <!-- ================= VISOR DE IMÁGENES ================= -->

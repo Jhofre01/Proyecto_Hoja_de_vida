@@ -83,6 +83,7 @@ strong {
 
 <body>
 
+{% if "dp" in mostrar %}
 <!-- ================= DATOS PERSONALES ================= -->
 
 <h1>{{ persona.nombres }} {{ persona.apellidos }}</h1>
@@ -159,8 +160,10 @@ strong {
         <td>{{ persona.sitioweb|default:"No disponible" }}</td>
     </tr>
 </table>
+{% endif %}
 
 
+{% if "exp" in mostrar %}
 <!-- ================= EXPERIENCIA LABORAL ================= -->
 <h2>Experiencia Laboral</h2>
 {% for e in experiencias %}
@@ -186,7 +189,10 @@ strong {
     No hay experiencia registrada
 </div>
 {% endfor %}
+{% endif %}
 
+
+{% if "rec" in mostrar %}
 <!-- ================= RECONOCIMIENTOS ================= -->
 <h2>Reconocimientos</h2>
 {% for r in reconocimientos %}
@@ -209,8 +215,10 @@ strong {
     No hay reconocimientos registrados
 </div>
 {% endfor %}
+{% endif %}
 
 
+{% if "cur" in mostrar %}
 <!-- ================= CURSOS ================= -->
 <h2>Cursos Realizados</h2>
 {% for c in cursos %}
@@ -236,7 +244,10 @@ strong {
     No hay cursos registrados
 </div>
 {% endfor %}
+{% endif %}
 
+
+{% if "pa" in mostrar %}
 <!-- ================= PRODUCTOS ACADÉMICOS ================= -->
 <h2>Productos Académicos</h2>
 {% for p in productos_academicos %}
@@ -254,7 +265,10 @@ strong {
     No hay productos académicos
 </div>
 {% endfor %}
+{% endif %}
 
+
+{% if "pl" in mostrar %}
 <!-- ================= PRODUCTOS LABORALES ================= -->
 <h2>Productos Laborales</h2>
 {% for p in productos_laborales %}
@@ -272,7 +286,10 @@ strong {
     No hay productos laborales
 </div>
 {% endfor %}
+{% endif %}
 
+
+{% if "vg" in mostrar %}
 <!-- ================= VENTA GARAGE ================= -->
 <h2>Venta Garage</h2>
 {% for v in ventas %}
@@ -291,6 +308,8 @@ strong {
     No hay productos en venta
 </div>
 {% endfor %}
+{% endif %}
+
 
 </body>
 </html>
