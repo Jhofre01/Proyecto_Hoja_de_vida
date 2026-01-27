@@ -28,11 +28,15 @@ def hojadevida(request):
         "cursos": persona.cursos
             .filter(activarparaqueveaenfront=True)
             .order_by('-fechafin', '-fechainicio'),
-        "productos_academicos": persona.productos_academicos.filter(activarparaqueveaenfront=True),
+        "productos_academicos": persona.productos_academicos
+            .filter(activarparaqueveaenfront=True)
+            .order_by("nombreproducto"),
         "productos_laborales": persona.productos_laborales
             .filter(activarparaqueveaenfront=True)
             .order_by('-fechaproducto'),
-        "ventas": persona.ventas.filter(activarparaqueveaenfront=True),
+        "ventas": persona.ventas
+            .filter(activarparaqueveaenfront=True)
+            .order_by("nombreproducto"),
     }
 
     return render(request, "hojadevida.html", context)
@@ -40,7 +44,30 @@ def hojadevida(request):
 
 def descargar_pdf(request):
     secciones = request.GET.get("secciones", "")
-    mostrar = secciones.split(",") if secciones else []
+    secciones = secciones.split(",") if secciones else []
+    mostrar = []
+
+    if "dp" in secciones:
+        mostrar.append("dp")
+
+    if "exp" in secciones and config.mostrar_experiencia:
+        mostrar.append("exp")
+
+    if "rec" in secciones and config.mostrar_reconocimientos:
+        mostrar.append("rec")
+
+    if "cur" in secciones and config.mostrar_cursos:
+        mostrar.append("cur")
+
+    if "pa" in secciones and config.mostrar_productos_academicos:
+        mostrar.append("pa")
+
+    if "pl" in secciones and config.mostrar_productos_laborales:
+        mostrar.append("pl")
+
+    if "vg" in secciones and config.mostrar_venta_garage:
+        mostrar.append("vg")
+
     persona = DatosPersonales.objects.first()
     config = SeccionPagina.objects.first()  # 👈 NUEVO
 
@@ -60,11 +87,15 @@ def descargar_pdf(request):
         "cursos": persona.cursos
             .filter(activarparaqueveaenfront=True)
             .order_by('-fechafin', '-fechainicio'),
-        "productos_academicos": persona.productos_academicos.filter(activarparaqueveaenfront=True),
+        "productos_academicos": persona.productos_academicos
+            .filter(activarparaqueveaenfront=True)
+            .order_by("nombreproducto"),
         "productos_laborales": persona.productos_laborales
             .filter(activarparaqueveaenfront=True)
             .order_by('-fechaproducto'),
-        "ventas": persona.ventas.filter(activarparaqueveaenfront=True),
+        "ventas": persona.ventas
+            .filter(activarparaqueveaenfront=True)
+            .order_by("nombreproducto"),
         "mostrar": mostrar,
     }
 
