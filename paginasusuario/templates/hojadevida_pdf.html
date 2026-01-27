@@ -183,6 +183,10 @@ strong {
     </p>
 
     <p><strong>Funciones:</strong> {{ e.descripcionfunciones }}</p>
+    
+    {% if e.imagen %}
+    <img src="{{ e.imagen.url }}">
+    {% endif %}
 </div>
 {% empty %}
 <div class="mensaje-vacio">

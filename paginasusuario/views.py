@@ -19,11 +19,19 @@ def hojadevida(request):
     context = {
         "persona": persona,
         "config": config,  # 👈 NUEVO
-        "experiencias": persona.experiencias.filter(activarparaqueveaenfront=True),
-        "reconocimientos": persona.reconocimientos.filter(activarparaqueveaenfront=True),
-        "cursos": persona.cursos.filter(activarparaqueveaenfront=True),
+        "experiencias": persona.experiencias
+            .filter(activarparaqueveaenfront=True)
+            .order_by('-fechafingestion', '-fechainiciogestion'),
+        "reconocimientos": persona.reconocimientos
+            .filter(activarparaqueveaenfront=True)
+            .order_by('-fechareconocimiento'),
+        "cursos": persona.cursos
+            .filter(activarparaqueveaenfront=True)
+            .order_by('-fechafin', '-fechainicio'),
         "productos_academicos": persona.productos_academicos.filter(activarparaqueveaenfront=True),
-        "productos_laborales": persona.productos_laborales.filter(activarparaqueveaenfront=True),
+        "productos_laborales": persona.productos_laborales
+            .filter(activarparaqueveaenfront=True)
+            .order_by('-fechaproducto'),
         "ventas": persona.ventas.filter(activarparaqueveaenfront=True),
     }
 
@@ -43,11 +51,19 @@ def descargar_pdf(request):
     context = {
         "persona": persona,
         "config": config,  # 👈 NUEVO
-        "experiencias": persona.experiencias.filter(activarparaqueveaenfront=True),
-        "reconocimientos": persona.reconocimientos.filter(activarparaqueveaenfront=True),
-        "cursos": persona.cursos.filter(activarparaqueveaenfront=True),
+        "experiencias": persona.experiencias
+            .filter(activarparaqueveaenfront=True)
+            .order_by('-fechafingestion', '-fechainiciogestion'),
+        "reconocimientos": persona.reconocimientos
+            .filter(activarparaqueveaenfront=True)
+            .order_by('-fechareconocimiento'),
+        "cursos": persona.cursos
+            .filter(activarparaqueveaenfront=True)
+            .order_by('-fechafin', '-fechainicio'),
         "productos_academicos": persona.productos_academicos.filter(activarparaqueveaenfront=True),
-        "productos_laborales": persona.productos_laborales.filter(activarparaqueveaenfront=True),
+        "productos_laborales": persona.productos_laborales
+            .filter(activarparaqueveaenfront=True)
+            .order_by('-fechaproducto'),
         "ventas": persona.ventas.filter(activarparaqueveaenfront=True),
         "mostrar": mostrar,
     }
