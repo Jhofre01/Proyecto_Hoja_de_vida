@@ -183,45 +183,51 @@ h2 {
 
 .card-data {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: minmax(32px, auto);
-    gap: 10px;
-}
 
+    grid-auto-flow: column;     /* llena por columnas */
+    grid-auto-rows: min-content; /* 👈 clave absoluta */
 
-.card-data {
-    display: grid;
-    grid-template-rows: repeat(5, auto);
-    grid-auto-flow: column;
-
+    row-gap: 6px;
     column-gap: 40px;
-    row-gap: 8px;
-
-    width: 100%;
 }
+
+
+
+.card-data p {
+    margin: 0;
+    padding: 2px 0;
+    line-height: 1.35;
+}
+
+
 
 
 .card-data strong {
-    color: #2563eb;
+    color: #f1f5f9;
     font-weight: 600;
 }
 
+
 .card-image {
+    display: flex;
+    align-items: center;   /* 👈 centra vertical */
+    justify-content: center;
+
     max-height: 160px;
     overflow: hidden;
 }
 
 
+
 .card-image img {
     width: 100%;
-    height: 100%;
+    height: auto;
     max-height: 160px;
 
-    object-fit: cover;
+    object-fit: contain;  /* 👈 NO cover aquí */
     border-radius: 10px;
-
-    display: block;
 }
+
 
 
 
@@ -234,7 +240,7 @@ h2 {
 }
 
 .card strong {
-    color: #1e3a8a;
+    color: #e5e7eb; /* gris claro legible */
 }
 
 
@@ -652,8 +658,8 @@ h2 {
     <div class="card-content">
         <div class="card-data">
             <p><strong>Producto:</strong> {{ v.nombreproducto }}</p>
-            <p><strong>Estado:</strong> {{ v.estadoproducto }}</p>
             <p><strong>Estado:</strong> {{ v.get_estadoproducto_display }}</p>
+            <p><strong>Valor:</strong> ${{ v.valordebien }}</p>
             <p><strong>Descripción:</strong> {{ v.descripcion }}</p>
         </div> 
         {% if v.imagen %}
