@@ -741,6 +741,8 @@ function mostrar(id) {
 </script>
 
 <script>
+document.addEventListener("DOMContentLoaded", () => {
+
     const lightbox = document.getElementById("imageLightbox");
     const lightboxImg = document.getElementById("lightboxImg");
 
@@ -764,7 +766,10 @@ function mostrar(id) {
             lightboxImg.src = "";
         }
     });
+
+});
 </script>
+
 
 <!-- ================= VISOR DE IMÁGENES ================= -->
 <div class="image-lightbox" id="imageLightbox">
