@@ -164,17 +164,66 @@ h2 {
 }
 
 .card {
-    display: grid;
-    grid-template-columns: 1fr 220px;
-    gap: 18px;
+    background: rgba(255,255,255,0.97);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 24px;
 
-    background: #ffffff;
-    padding: 18px;
-    border-radius: 14px;
-
-    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-    margin-bottom: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.18);
 }
+
+
+.card-content {
+    display: grid;
+    grid-template-columns: 3fr 1fr; /* 75% / 25% */
+    gap: 20px;
+    align-items: stretch;
+}
+
+.card-data {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(32px, auto);
+    gap: 10px;
+}
+
+
+.card-data p {
+    margin: 0;
+    padding: 6px 10px;
+
+    background: #f8fafc;
+    border-radius: 6px;
+
+    color: #1e293b;       /* TEXTO CLARO */
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.card-data strong {
+    color: #2563eb;
+    font-weight: 600;
+}
+
+.card-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    max-height: 220px;
+
+    object-fit: cover;
+    border-radius: 12px;
+
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}
+
+
+
 
 
 .card p {
@@ -480,18 +529,23 @@ h2 {
 <h2>Reconocimientos</h2>
 {% for r in reconocimientos %}
 <div class="card fondo-{{ forloop.counter|default:1 }}">
-    <p><strong>Tipo:</strong> {{ r.tiporeconocimiento }}</p>
-    <p><strong>Fecha:</strong> {{ r.fechareconocimiento|date:"d/m/Y" }}</p>
-    <p><strong>Entidad patrocinadora:</strong> {{ r.entidadpatrocinadora }}</p>
+    <div class="card-content">
+        <div class="card-data">
+            <p><strong>Tipo:</strong> {{ r.tiporeconocimiento }}</p>
+            <p><strong>Fecha:</strong> {{ r.fechareconocimiento|date:"d/m/Y" }}</p>
+            <p><strong>Entidad patrocinadora:</strong> {{ r.entidadpatrocinadora }}</p>
 
-    <p><strong>Contacto:</strong> {{ r.nombrecontactoauspicia }}</p>
-    <p><strong>Teléfono:</strong> {{ r.telefonocontactoauspicia }}</p>
+            <p><strong>Contacto:</strong> {{ r.nombrecontactoauspicia }}</p>
+            <p><strong>Teléfono:</strong> {{ r.telefonocontactoauspicia }}</p>
 
-    <p><strong>Descripción:</strong> {{ r.descripcionreconocimiento }}</p>
-
-    {% if r.imagen %}
-        <img src="{{ r.imagen.url }}">
-    {% endif %}
+            <p><strong>Descripción:</strong> {{ r.descripcionreconocimiento }}</p>
+        </div>
+        {% if r.imagen %}
+        <div class="card-image">
+            <img src="{{ r.imagen.url }}">
+        </div>
+        {% endif %}
+    </div>
 </div>
 {% empty %}
 <p class="mensaje-vacio">No hay reconocimientos</p>
@@ -505,21 +559,26 @@ h2 {
 <h2>Cursos Realizados</h2>
 {% for c in cursos %}
 <div class="card fondo-{{ forloop.counter|default:1 }}">
-    <p><strong>Curso:</strong> {{ c.nombrecurso }}</p>
-    <p><strong>Inicio:</strong> {{ c.fechainicio|date:"d/m/Y" }}</p>
-    <p><strong>Fin:</strong> {{ c.fechafin|date:"d/m/Y" }}</p>
-    <p><strong>Total horas:</strong> {{ c.totalhoras }}</p>
+    <div class="card-content">
+        <div class="card-data">
+            <p><strong>Curso:</strong> {{ c.nombrecurso }}</p>
+            <p><strong>Inicio:</strong> {{ c.fechainicio|date:"d/m/Y" }}</p>
+            <p><strong>Fin:</strong> {{ c.fechafin|date:"d/m/Y" }}</p>
+            <p><strong>Total horas:</strong> {{ c.totalhoras }}</p>
 
-    <p><strong>Entidad patrocinadora:</strong> {{ c.entidadpatrocinadora }}</p>
-    <p><strong>Contacto:</strong> {{ c.nombrecontactoauspicia }}</p>
-    <p><strong>Teléfono contacto:</strong> {{ c.telefonocontactoauspicia }}</p>
-    <p><strong>Email empresa:</strong> {{ c.emailempresa }}</p>
+            <p><strong>Entidad patrocinadora:</strong> {{ c.entidadpatrocinadora }}</p>
+            <p><strong>Contacto:</strong> {{ c.nombrecontactoauspicia }}</p>
+            <p><strong>Teléfono contacto:</strong> {{ c.telefonocontactoauspicia }}</p>
+            <p><strong>Email empresa:</strong> {{ c.emailempresa }}</p>
 
-    <p><strong>Descripción:</strong> {{ c.descripcioncurso }}</p>
-
-    {% if c.imagen %}
-        <img src="{{ c.imagen.url }}">
-    {% endif %}
+            <p><strong>Descripción:</strong> {{ c.descripcioncurso }}</p>
+        </div>
+        {% if c.imagen %}
+        <div class="card-image">
+            <img src="{{ c.imagen.url }}">
+        </div>
+        {% endif %}
+    </div>
 </div>
 {% empty %}
 <p class="mensaje-vacio">No hay cursos registrados</p>
@@ -533,13 +592,18 @@ h2 {
 <h2>Productos Académicos</h2>
 {% for p in productos_academicos %}
 <div class="card fondo-{{ forloop.counter|default:1 }}">
-    <p><strong>Nombre:</strong> {{ p.nombreproducto }}</p>
-    <p><strong>Clasificador:</strong> {{ p.clasificador }}</p>
-    <p><strong>Descripción:</strong> {{ p.descripcion }}</p>
-
-    {% if p.imagen %}
-        <img src="{{ p.imagen.url }}">
-    {% endif %}
+    <div class="card-content">
+        <div class="card-data">
+            <p><strong>Nombre:</strong> {{ p.nombreproducto }}</p>
+            <p><strong>Clasificador:</strong> {{ p.clasificador }}</p>
+            <p><strong>Descripción:</strong> {{ p.descripcion }}</p>
+        </div>    
+        {% if p.imagen %}
+        <div class="card-image">
+            <img src="{{ p.imagen.url }}">
+        </div>
+        {% endif %}
+    </div>
 </div>
 {% empty %}
 <p class="mensaje-vacio">No hay productos académicos</p>
@@ -553,13 +617,18 @@ h2 {
 <h2>Productos Laborales</h2>
 {% for p in productos_laborales %}
 <div class="card fondo-{{ forloop.counter|default:1 }}">
-    <p><strong>Producto:</strong> {{ p.nombreproducto }}</p>
-    <p><strong>Fecha:</strong> {{ p.fechaproducto|date:"d/m/Y" }}</p>
-    <p><strong>Descripción:</strong> {{ p.descripcion }}</p>
-
-    {% if p.imagen %}
-        <img src="{{ p.imagen.url }}">
-    {% endif %}
+    <div class="card-content">
+        <div class="card-data">
+            <p><strong>Producto:</strong> {{ p.nombreproducto }}</p>
+            <p><strong>Fecha:</strong> {{ p.fechaproducto|date:"d/m/Y" }}</p>
+            <p><strong>Descripción:</strong> {{ p.descripcion }}</p>
+        </div> 
+        {% if p.imagen %}
+        <div class="card-image">
+            <img src="{{ p.imagen.url }}">
+        </div> 
+        {% endif %}
+    </div> 
 </div>
 {% empty %}
 <p class="mensaje-vacio">No hay productos laborales</p>
@@ -573,14 +642,19 @@ h2 {
 <h2>Venta Garage</h2>
 {% for v in ventas %}
 <div class="card fondo-{{ forloop.counter|default:1 }}">
-    <p><strong>Producto:</strong> {{ v.nombreproducto }}</p>
-    <p><strong>Estado:</strong> {{ v.estadoproducto }}</p>
-    <p><strong>Estado:</strong> {{ v.get_estadoproducto_display }}</p>
-    <p><strong>Descripción:</strong> {{ v.descripcion }}</p>
-
-    {% if v.imagen %}
-        <img src="{{ v.imagen.url }}">
-    {% endif %}
+    <div class="card-content">
+        <div class="card-data">
+            <p><strong>Producto:</strong> {{ v.nombreproducto }}</p>
+            <p><strong>Estado:</strong> {{ v.estadoproducto }}</p>
+            <p><strong>Estado:</strong> {{ v.get_estadoproducto_display }}</p>
+            <p><strong>Descripción:</strong> {{ v.descripcion }}</p>
+        </div> 
+        {% if v.imagen %}
+        <div class="card-image">
+            <img src="{{ v.imagen.url }}">
+        </div> 
+        {% endif %}
+    </div> 
 </div>
 {% empty %}
 <p class="mensaje-vacio">No hay productos en venta</p>
