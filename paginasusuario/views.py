@@ -43,10 +43,18 @@ def hojadevida(request):
 
 
 def descargar_pdf(request):
+    persona = DatosPersonales.objects.first()
+    config = SeccionPagina.objects.first()  # 👈 DEBE IR ARRIBA
+
+    if not persona or not config:
+        return HttpResponse("No hay datos para generar el PDF")
+
     secciones = request.GET.get("secciones", "")
     secciones = secciones.split(",") if secciones else []
+
     mostrar = []
 
+    # Datos personales (siempre)
     if "dp" in secciones:
         mostrar.append("dp")
 
@@ -68,35 +76,36 @@ def descargar_pdf(request):
     if "vg" in secciones and config.mostrar_venta_garage:
         mostrar.append("vg")
 
-    persona = DatosPersonales.objects.first()
-    config = SeccionPagina.objects.first()  # 👈 NUEVO
-
-    if not persona:
-        return HttpResponse("No hay datos para generar el PDF")
-
     template = get_template("hojadevida_pdf.html")
+
     context = {
         "persona": persona,
-        "config": config,  # 👈 NUEVO
+        "config": config,
+        "mostrar": mostrar,
+
         "experiencias": persona.experiencias
             .filter(activarparaqueveaenfront=True)
             .order_by('-fechafingestion', '-fechainiciogestion'),
+
         "reconocimientos": persona.reconocimientos
             .filter(activarparaqueveaenfront=True)
             .order_by('-fechareconocimiento'),
+
         "cursos": persona.cursos
             .filter(activarparaqueveaenfront=True)
             .order_by('-fechafin', '-fechainicio'),
+
         "productos_academicos": persona.productos_academicos
             .filter(activarparaqueveaenfront=True)
             .order_by("nombreproducto"),
+
         "productos_laborales": persona.productos_laborales
             .filter(activarparaqueveaenfront=True)
             .order_by('-fechaproducto'),
+
         "ventas": persona.ventas
             .filter(activarparaqueveaenfront=True)
             .order_by("nombreproducto"),
-        "mostrar": mostrar,
     }
 
     html = template.render(context)
@@ -109,5 +118,6 @@ def descargar_pdf(request):
         return HttpResponse("Error al generar el PDF")
 
     return response
+
 
 

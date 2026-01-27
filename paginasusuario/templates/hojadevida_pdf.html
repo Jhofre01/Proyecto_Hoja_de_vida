@@ -164,29 +164,43 @@ strong {
 
 
 {% if "exp" in mostrar %}
-<!-- ================= EXPERIENCIA LABORAL ================= -->
 <h2>Experiencia Laboral</h2>
 {% for e in experiencias %}
 <div class="card">
-    <p><strong>Cargo:</strong> {{ e.cargodesempenado }}</p>
-    <p><strong>Empresa:</strong> {{ e.nombreempresa }}</p>
-    <p><strong>Lugar:</strong> {{ e.lugarempresa }}</p>
-    <p><strong>Email empresa:</strong> {{ e.emailempresa }}</p>
-    <p><strong>Sitio web empresa:</strong> {{ e.sitiowebempresa }}</p>
+    <table width="100%">
+        <tr>
+            <!-- TEXTO 75% -->
+            <td width="75%" valign="top">
 
-    <p><strong>Contacto:</strong> {{ e.nombrecontactoempresarial }}</p>
-    <p><strong>Teléfono contacto:</strong> {{ e.telefonocontactoempresarial }}</p>
+                <p style="text-align:right; font-size:10px;">
+                    📅 {{ e.fechainiciogestion|date:"d M, Y" }}
+                    -
+                    {{ e.fechafingestion|date:"d M, Y"|default:"Actualidad" }}
+                </p>
 
-    <p>
-        <strong>Desde:</strong> {{ e.fechainiciogestion|date:"d/m/Y"|default:"No especificado" }} |
-        <strong>Hasta:</strong> {{ e.fechafingestion|date:"d/m/Y"|default:"Actualidad" }}
-    </p>
+                <p><strong>Cargo:</strong> {{ e.cargodesempenado }}</p>
+                <p><strong>Empresa:</strong> {{ e.nombreempresa }}</p>
+                <p><strong>Lugar:</strong> {{ e.lugarempresa }}</p>
+                <p><strong>Email:</strong> {{ e.emailempresa }}</p>
+                <p><strong>Sitio web:</strong> {{ e.sitiowebempresa }}</p>
 
-    <p><strong>Funciones:</strong> {{ e.descripcionfunciones }}</p>
-    
-    {% if e.imagen %}
-    <img src="{{ e.imagen.url }}">
-    {% endif %}
+                <hr>
+
+                <p><strong>Contacto:</strong> {{ e.nombrecontactoempresarial }}</p>
+                <p><strong>Teléfono:</strong> {{ e.telefonocontactoempresarial }}</p>
+
+                <p><strong>Funciones:</strong> {{ e.descripcionfunciones }}</p>
+
+            </td>
+
+            <!-- IMAGEN 25% -->
+            <td width="25%" valign="top" align="center">
+                {% if e.imagen %}
+                    <img src="{{ e.imagen.url }}">
+                {% endif %}
+            </td>
+        </tr>
+    </table>
 </div>
 {% empty %}
 <div class="mensaje-vacio">
@@ -196,23 +210,40 @@ strong {
 {% endif %}
 
 
+
 {% if "rec" in mostrar %}
-<!-- ================= RECONOCIMIENTOS ================= -->
 <h2>Reconocimientos</h2>
 {% for r in reconocimientos %}
 <div class="card">
-    <p><strong>Tipo:</strong> {{ r.tiporeconocimiento }}</p>
-    <p><strong>Fecha:</strong> {{ r.fechareconocimiento|date:"d/m/Y" }}</p>
-    <p><strong>Entidad patrocinadora:</strong> {{ r.entidadpatrocinadora }}</p>
+    <table width="100%">
+        <tr>
+            <!-- TEXTO 75% -->
+            <td width="75%" valign="top">
 
-    <p><strong>Contacto:</strong> {{ r.nombrecontactoauspicia }}</p>
-    <p><strong>Teléfono:</strong> {{ r.telefonocontactoauspicia }}</p>
+                <p style="text-align:right; font-size:10px;">
+                    📅 {{ r.fechareconocimiento|date:"d M, Y" }}
+                </p>
 
-    <p><strong>Descripción:</strong> {{ r.descripcionreconocimiento }}</p>
+                <p><strong>Tipo:</strong> {{ r.tiporeconocimiento }}</p>
+                <p><strong>Entidad patrocinadora:</strong> {{ r.entidadpatrocinadora }}</p>
 
-    {% if r.imagen %}
-        <img src="{{ r.imagen.url }}">
-    {% endif %}
+                <hr>
+
+                <p><strong>Contacto:</strong> {{ r.nombrecontactoauspicia }}</p>
+                <p><strong>Teléfono:</strong> {{ r.telefonocontactoauspicia }}</p>
+
+                <p><strong>Descripción:</strong> {{ r.descripcionreconocimiento }}</p>
+
+            </td>
+
+            <!-- IMAGEN 25% -->
+            <td width="25%" valign="top" align="center">
+                {% if r.imagen %}
+                    <img src="{{ r.imagen.url }}">
+                {% endif %}
+            </td>
+        </tr>
+    </table>
 </div>
 {% empty %}
 <div class="mensaje-vacio">
@@ -222,26 +253,44 @@ strong {
 {% endif %}
 
 
+
 {% if "cur" in mostrar %}
-<!-- ================= CURSOS ================= -->
 <h2>Cursos Realizados</h2>
 {% for c in cursos %}
 <div class="card">
-    <p><strong>Curso:</strong> {{ c.nombrecurso }}</p>
-    <p><strong>Inicio:</strong> {{ c.fechainicio|date:"d/m/Y" }}</p>
-    <p><strong>Fin:</strong> {{ c.fechafin|date:"d/m/Y" }}</p>
-    <p><strong>Total horas:</strong> {{ c.totalhoras }}</p>
+    <table width="100%">
+        <tr>
+            <!-- TEXTO 75% -->
+            <td width="75%" valign="top">
 
-    <p><strong>Entidad patrocinadora:</strong> {{ c.entidadpatrocinadora }}</p>
-    <p><strong>Contacto:</strong> {{ c.nombrecontactoauspicia }}</p>
-    <p><strong>Teléfono contacto:</strong> {{ c.telefonocontactoauspicia }}</p>
-    <p><strong>Email empresa:</strong> {{ c.emailempresa }}</p>
+                <p style="text-align:right; font-size:10px;">
+                    📅 {{ c.fechainicio|date:"d M, Y" }}
+                    -
+                    {{ c.fechafin|date:"d M, Y" }}
+                </p>
 
-    <p><strong>Descripción:</strong> {{ c.descripcioncurso }}</p>
+                <p><strong>Curso:</strong> {{ c.nombrecurso }}</p>
+                <p><strong>Total horas:</strong> {{ c.totalhoras }}</p>
+                <p><strong>Entidad patrocinadora:</strong> {{ c.entidadpatrocinadora }}</p>
 
-    {% if c.imagen %}
-        <img src="{{ c.imagen.url }}">
-    {% endif %}
+                <hr>
+
+                <p><strong>Contacto:</strong> {{ c.nombrecontactoauspicia }}</p>
+                <p><strong>Teléfono:</strong> {{ c.telefonocontactoauspicia }}</p>
+                <p><strong>Email:</strong> {{ c.emailempresa }}</p>
+
+                <p><strong>Descripción:</strong> {{ c.descripcioncurso }}</p>
+
+            </td>
+
+            <!-- IMAGEN 25% -->
+            <td width="25%" valign="top" align="center">
+                {% if c.imagen %}
+                    <img src="{{ c.imagen.url }}">
+                {% endif %}
+            </td>
+        </tr>
+    </table>
 </div>
 {% empty %}
 <div class="mensaje-vacio">
@@ -251,18 +300,33 @@ strong {
 {% endif %}
 
 
+
 {% if "pa" in mostrar %}
-<!-- ================= PRODUCTOS ACADÉMICOS ================= -->
 <h2>Productos Académicos</h2>
 {% for p in productos_academicos %}
 <div class="card">
-    <p><strong>Nombre:</strong> {{ p.nombreproducto }}</p>
-    <p><strong>Clasificador:</strong> {{ p.clasificador }}</p>
-    <p><strong>Descripción:</strong> {{ p.descripcion }}</p>
+    <table width="100%">
+        <tr>
+            <!-- TEXTO 75% -->
+            <td width="75%" valign="top">
 
-    {% if p.imagen %}
-        <img src="{{ p.imagen.url }}">
-    {% endif %}
+                <p><strong>Nombre:</strong> {{ p.nombreproducto }}</p>
+                <p><strong>Clasificador:</strong> {{ p.clasificador }}</p>
+
+                <hr>
+
+                <p><strong>Descripción:</strong> {{ p.descripcion }}</p>
+
+            </td>
+
+            <!-- IMAGEN 25% -->
+            <td width="25%" valign="top" align="center">
+                {% if p.imagen %}
+                    <img src="{{ p.imagen.url }}">
+                {% endif %}
+            </td>
+        </tr>
+    </table>
 </div>
 {% empty %}
 <div class="mensaje-vacio">
@@ -272,18 +336,36 @@ strong {
 {% endif %}
 
 
+
 {% if "pl" in mostrar %}
-<!-- ================= PRODUCTOS LABORALES ================= -->
 <h2>Productos Laborales</h2>
 {% for p in productos_laborales %}
 <div class="card">
-    <p><strong>Producto:</strong> {{ p.nombreproducto }}</p>
-    <p><strong>Fecha:</strong> {{ p.fechaproducto|date:"d/m/Y" }}</p>
-    <p><strong>Descripción:</strong> {{ p.descripcion }}</p>
+    <table width="100%">
+        <tr>
+            <!-- TEXTO 75% -->
+            <td width="75%" valign="top">
 
-    {% if p.imagen %}
-        <img src="{{ p.imagen.url }}">
-    {% endif %}
+                <p style="text-align:right; font-size:10px;">
+                    📅 {{ p.fechaproducto|date:"d M, Y" }}
+                </p>
+
+                <p><strong>Producto:</strong> {{ p.nombreproducto }}</p>
+
+                <hr>
+
+                <p><strong>Descripción:</strong> {{ p.descripcion }}</p>
+
+            </td>
+
+            <!-- IMAGEN 25% -->
+            <td width="25%" valign="top" align="center">
+                {% if p.imagen %}
+                    <img src="{{ p.imagen.url }}">
+                {% endif %}
+            </td>
+        </tr>
+    </table>
 </div>
 {% empty %}
 <div class="mensaje-vacio">
@@ -293,19 +375,34 @@ strong {
 {% endif %}
 
 
+
 {% if "vg" in mostrar %}
-<!-- ================= VENTA GARAGE ================= -->
 <h2>Venta Garage</h2>
 {% for v in ventas %}
 <div class="card">
-    <p><strong>Producto:</strong> {{ v.nombreproducto }}</p>
-    <p><strong>Estado:</strong> {{ v.estadoproducto }}</p>
-    <p><strong>Valor:</strong> ${{ v.valordebien }}</p>
-    <p><strong>Descripción:</strong> {{ v.descripcion }}</p>
+    <table width="100%">
+        <tr>
+            <!-- TEXTO 75% -->
+            <td width="75%" valign="top">
 
-    {% if v.imagen %}
-        <img src="{{ v.imagen.url }}">
-    {% endif %}
+                <p><strong>Producto:</strong> {{ v.nombreproducto }}</p>
+                <p><strong>Estado:</strong> {{ v.estadoproducto }}</p>
+                <p><strong>Valor:</strong> ${{ v.valordebien }}</p>
+
+                <hr>
+
+                <p><strong>Descripción:</strong> {{ v.descripcion }}</p>
+
+            </td>
+
+            <!-- IMAGEN 25% -->
+            <td width="25%" valign="top" align="center">
+                {% if v.imagen %}
+                    <img src="{{ v.imagen.url }}">
+                {% endif %}
+            </td>
+        </tr>
+    </table>
 </div>
 {% empty %}
 <div class="mensaje-vacio">
@@ -313,6 +410,7 @@ strong {
 </div>
 {% endfor %}
 {% endif %}
+
 
 
 </body>
