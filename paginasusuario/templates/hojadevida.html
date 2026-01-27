@@ -672,34 +672,29 @@ h2 {
         <!-- 75% TEXTO -->
         <div class="card-text">
 
-            <!-- FECHA -->
-            <div class="card-date">
-                📅 {{ e.fechainicio|date:"d M, Y" }} – {{ e.fechafin|date:"d M, Y"|default:"Actualidad" }}
-            </div>
-
-            <!-- TÍTULO -->
             <div class="card-main-title">
-                {{ e.cargo }}
+                {{ e.cargodesempenado }}
             </div>
 
-            <!-- SUBTÍTULO -->
             <div class="card-subtitle">
-                {{ e.empresa }} – {{ e.lugar }}
+                {{ e.nombreempresa }} – {{ e.lugarempresa }}
             </div>
 
-            <!-- TEXTO -->
-            <div class="card-text-body">
-                {{ e.funciones }}
+            <div class="card-date">
+                📅 {{ e.fechainiciogestion|date:"d M, Y" }} –
+                {{ e.fechafingestion|date:"d M, Y"|default:"Actualidad" }}
             </div>
 
-            <!-- DIVISOR -->
             <div class="card-divider"></div>
 
-            <!-- DATOS -->
+            <div class="card-text-body">
+                {{ e.descripcionfunciones }}
+            </div>
+
             <div class="card-meta">
                 <p><strong>Email:</strong> {{ e.emailempresa }}</p>
-                <p><strong>Teléfono:</strong> {{ e.telefonoempresa }}</p>
-                <p><strong>Sitio web:</strong> {{ e.sitioweb }}</p>
+                <p><strong>Teléfono:</strong> {{ e.telefonocontactoempresarial }}</p>
+                <p><strong>Sitio web:</strong> {{ e.sitiowebempresa }}</p>
             </div>
 
         </div>
@@ -733,34 +728,29 @@ h2 {
 
         <div class="card-text">
 
-            <!-- FECHA -->
             <div class="card-date">
-                📅 {{ r.fecha|date:"d M, Y" }}
+                📅 {{ r.fechareconocimiento|date:"d M, Y" }}
             </div>
 
-            <!-- BADGE -->
-            <span class="badge">
-                {{ r.tipo }}
-            </span>
-
-            <!-- TÍTULO -->
             <div class="card-main-title">
-                {{ r.descripcion }}
+                {{ r.descripcionreconocimiento }}
             </div>
 
-            <!-- SUBTÍTULO -->
             <div class="card-subtitle">
-                {{ r.entidad }}
+                {{ r.entidadpatrocinadora }}
             </div>
 
             <div class="card-divider"></div>
 
-            <!-- DATOS -->
+            <span class="badge">
+                {{ r.tiporeconocimiento }}
+            </span>
+
             <div class="card-meta">
-                <p><strong>Contacto:</strong> {{ r.nombrecontacto }}</p>
-                <p><strong>Teléfono:</strong> {{ r.telefono }}</p>
-                <p><strong>Email:</strong> {{ r.email }}</p>
+                <p><strong>Contacto:</strong> {{ r.nombrecontactoauspicia }}</p>
+                <p><strong>Teléfono:</strong> {{ r.telefonocontactoauspicia }}</p>
             </div>
+
 
         </div>
 
@@ -860,18 +850,14 @@ h2 {
         <div class="card-text">
 
             <div class="card-main-title">
-                {{ p.nombre }}
+                {{ p.nombreproducto }}
             </div>
 
-            <div class="card-subtitle">
-                {{ p.tipo }}
-            </div>
+            <div class="card-divider"></div>
 
             <div class="card-text-body">
                 {{ p.descripcion }}
             </div>
-
-            <div class="card-divider"></div>
 
             <div class="card-meta">
                 <p><strong>Clasificador:</strong> {{ p.clasificador }}</p>
@@ -907,14 +893,15 @@ h2 {
 
         <div class="card-text">
 
-            <!-- FECHA -->
             <div class="card-date">
-                📅 {{ p.fecha|date:"d M, Y" }}
+                📅 {{ p.fechaproducto|date:"d M, Y" }}
             </div>
 
             <div class="card-main-title">
-                {{ p.nombre }}
+                {{ p.nombreproducto }}
             </div>
+
+            <div class="card-divider"></div>
 
             <div class="card-text-body">
                 {{ p.descripcion }}
