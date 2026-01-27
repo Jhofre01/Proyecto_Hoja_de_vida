@@ -176,21 +176,26 @@ h2 {
 
 .card-content {
     display: grid;
-    grid-template-columns: 3fr 1fr; /* 75% texto / 25% imagen */
+    grid-template-columns: 3fr 1fr;
     gap: 20px;
-    align-items: start; /* 👈 clave */
+    align-items: center; /* 👈 CAMBIO CLAVE */
 }
+
 
 
 .card-data {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    align-items: start;     /* CLAVE */
-    align-content: start;
 
-    column-gap: 40px;
-    row-gap: 4px;
+    grid-auto-flow: column;   /* 👈 CLAVE: llena columnas, no filas */
+    grid-template-rows: repeat(6, auto);
+
+    column-gap: 24px;
+    row-gap: 10px;
+
+    align-content: center;    /* ayuda a centrar cuando hay pocos datos */
 }
+
 
 
 
@@ -198,20 +203,28 @@ h2 {
 
 /* Texto dentro de cards */
 .card-data p {
-    color: #e5e7eb;        /* texto claro */
+    background: rgba(31, 41, 55, 0.75); /* gris oscuro translúcido */
+    color: #e5e7eb;
+
+    padding: 10px 12px;
+    border-radius: 10px;
+
     font-size: 14px;
-    line-height: 1.35;
+    line-height: 1.4;
+    font-weight: 600; /* negrita tipo Word */
+
     margin: 0;
-    align-self: start;
 }
+
 
 
 
 /* Etiquetas */
 .card-data strong {
-    color: #93c5fd;        /* azul claro */
-    font-weight: 600;
+    color: #93c5fd;
+    font-weight: 700;
 }
+
 
 
 
