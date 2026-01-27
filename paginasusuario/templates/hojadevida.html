@@ -166,12 +166,12 @@ h2 {
 .card {
     background: rgba(255, 255, 255, 0.97);
     border-radius: 16px;
-    padding: 20px;
-    margin-bottom: 24px;
+    padding: 30px 28px;   /* ⬅ más alto */
+    margin-bottom: 32px; /* ⬅ separación entre cartas */
 
     box-shadow: 0 10px 25px rgba(0,0,0,0.18);
-    height: auto;
 }
+
 
 
 .card-content {
@@ -483,6 +483,64 @@ h2 {
 }
 
 
+/* ===== ESTRUCTURA EDITORIAL ===== */
+
+.card-main-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #e5e7eb;
+    margin-bottom: 4px;
+}
+
+.card-subtitle {
+    font-size: 15px;
+    font-weight: 600;
+    color: #93c5fd;
+    margin-bottom: 12px;
+}
+
+.card-text {
+    font-size: 14px;
+    color: #e5e7eb;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.card-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.25);
+    margin: 16px 0;
+}
+
+.card-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 20px;
+}
+
+.card-meta p {
+    background: rgba(31,41,55,0.75);
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #e5e7eb;
+    font-weight: 600;
+}
+
+/* ===== BADGES ===== */
+
+.badge {
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 10px;
+}
+
+
 
 </style>
 </head>
@@ -586,24 +644,37 @@ h2 {
 {% for e in experiencias %}
 <div class="card fondo-{{ forloop.counter|default:1 }}">
     <div class="card-content">
-        <div class="card-data">
-            <p><strong>Cargo:</strong> {{ e.cargodesempenado }}</p>
-            <p><strong>Empresa:</strong> {{ e.nombreempresa }}</p>
-            <p><strong>Lugar:</strong> {{ e.lugarempresa }}</p>
-            <p><strong>Email empresa:</strong> {{ e.emailempresa }}</p>
-            <p><strong>Sitio web empresa:</strong> {{ e.sitiowebempresa }}</p>
+        <div class="card-data" style="grid-column: 1 / -1; display:block">
+            <!-- TÍTULO -->
+            <div class="card-main-title">
+                {{ e.cargodesempenado }}
+            </div>
 
-            <p><strong>Contacto:</strong> {{ e.nombrecontactoempresarial }}</p>
-            <p><strong>Teléfono contacto:</strong> {{ e.telefonocontactoempresarial }}</p>
+            <!-- SUBTÍTULO -->
+            <div class="card-subtitle">
+                {{ e.nombreempresa }} ({{ e.lugarempresa }})
+            </div>
 
-            <p>
-                <strong>Desde:</strong> {{ e.fechainiciogestion|date:"d/m/Y"|default:"No especificado" }} |
-                <strong>Hasta:</strong> {{ e.fechafingestion|date:"d/m/Y"|default:"Actualidad" }}
-            </p>
-        
-            <p><strong>Funciones:</strong> {{ e.descripcionfunciones }}</p>
+            <!-- TEXTO -->
+            <div class="card-text">
+                {{ e.descripcionfunciones }}
+            </div>
+
+            <div class="card-divider"></div>
+
+            <!-- DATOS SECUNDARIOS -->
+            <div class="card-meta">
+                <p>{{ e.emailempresa }}</p>
+                <p>{{ e.sitiowebempresa }}</p>
+                <p>{{ e.nombrecontactoempresarial }}</p>
+                <p>{{ e.telefonocontactoempresarial }}</p>
+                <p>
+                    {{ e.fechainiciogestion|date:"d/m/Y"|default:"No especificado" }}
+                    –
+                    {{ e.fechafingestion|date:"d/m/Y"|default:"Actualidad" }}
+                </p>
+            </div>
         </div>
-
         {% if e.imagen %}
         <div class="card-image">
             <img src="{{ e.imagen.url }}">
@@ -624,16 +695,28 @@ h2 {
 {% for r in reconocimientos %}
 <div class="card fondo-{{ forloop.counter|default:1 }}">
     <div class="card-content">
-        <div class="card-data">
-            <p><strong>Tipo:</strong> {{ r.tiporeconocimiento }}</p>
-            <p><strong>Fecha:</strong> {{ r.fechareconocimiento|date:"d/m/Y" }}</p>
-            <p><strong>Entidad patrocinadora:</strong> {{ r.entidadpatrocinadora }}</p>
+        <div class="card-data" style="grid-column: 1 / -1; display:block">
+            <span class="badge">
+                {{ r.tiporeconocimiento }}
+            </span>
+            <div class="card-main-title">
+                {{ r.descripcionreconocimiento }}
+            </div>
 
-            <p><strong>Contacto:</strong> {{ r.nombrecontactoauspicia }}</p>
-            <p><strong>Teléfono:</strong> {{ r.telefonocontactoauspicia }}</p>
+            <div class="card-subtitle">
+                {{ r.entidadpatrocinadora }}
+            </div>
 
-            <p><strong>Descripción:</strong> {{ r.descripcionreconocimiento }}</p>
+            <div class="card-divider"></div>
+
+            <div class="card-meta">
+                <p>{{ r.fechareconocimiento|date:"d/m/Y" }}</p>
+                <p>{{ r.nombrecontactoauspicia }}</p>
+                <p>{{ r.telefonocontactoauspicia }}</p>
+            </div>
+
         </div>
+
         {% if r.imagen %}
         <div class="card-image">
             <img src="{{ r.imagen.url }}">
@@ -654,19 +737,36 @@ h2 {
 {% for c in cursos %}
 <div class="card fondo-{{ forloop.counter|default:1 }}">
     <div class="card-content">
-        <div class="card-data">
-            <p><strong>Curso:</strong> {{ c.nombrecurso }}</p>
-            <p><strong>Inicio:</strong> {{ c.fechainicio|date:"d/m/Y" }}</p>
-            <p><strong>Fin:</strong> {{ c.fechafin|date:"d/m/Y" }}</p>
-            <p><strong>Total horas:</strong> {{ c.totalhoras }}</p>
+        <div class="card-data" style="grid-column: 1 / -1; display:block">
 
-            <p><strong>Entidad patrocinadora:</strong> {{ c.entidadpatrocinadora }}</p>
-            <p><strong>Contacto:</strong> {{ c.nombrecontactoauspicia }}</p>
-            <p><strong>Teléfono contacto:</strong> {{ c.telefonocontactoauspicia }}</p>
-            <p><strong>Email empresa:</strong> {{ c.emailempresa }}</p>
+            <span class="badge">
+                {{ c.totalhoras }} horas
+            </span>
 
-            <p><strong>Descripción:</strong> {{ c.descripcioncurso }}</p>
+            <div class="card-main-title">
+                {{ c.nombrecurso }}
+            </div>
+
+            <div class="card-subtitle">
+                {{ c.entidadpatrocinadora }}
+            </div>
+
+            <div class="card-text">
+                {{ c.descripcioncurso }}
+            </div>
+
+            <div class="card-divider"></div>
+
+            <div class="card-meta">
+                <p>{{ c.fechainicio|date:"d/m/Y" }}</p>
+                <p>{{ c.fechafin|date:"d/m/Y" }}</p>
+                <p>{{ c.nombrecontactoauspicia }}</p>
+                <p>{{ c.telefonocontactoauspicia }}</p>
+                <p>{{ c.emailempresa }}</p>
+            </div>
+
         </div>
+
         {% if c.imagen %}
         <div class="card-image">
             <img src="{{ c.imagen.url }}">
@@ -687,11 +787,22 @@ h2 {
 {% for p in productos_academicos %}
 <div class="card fondo-{{ forloop.counter|default:1 }}">
     <div class="card-content">
-        <div class="card-data">
-            <p><strong>Nombre:</strong> {{ p.nombreproducto }}</p>
-            <p><strong>Clasificador:</strong> {{ p.clasificador }}</p>
-            <p><strong>Descripción:</strong> {{ p.descripcion }}</p>
-        </div>    
+        <div class="card-data" style="grid-column: 1 / -1; display:block">
+
+            <div class="card-main-title">
+                {{ p.nombreproducto }}
+            </div>
+
+            <div class="card-text">
+                {{ p.descripcion }}
+            </div>
+
+            <div class="card-meta">
+                <p>{{ p.clasificador }}</p>
+            </div>
+
+        </div>
+    
         {% if p.imagen %}
         <div class="card-image">
             <img src="{{ p.imagen.url }}">
@@ -712,11 +823,22 @@ h2 {
 {% for p in productos_laborales %}
 <div class="card fondo-{{ forloop.counter|default:1 }}">
     <div class="card-content">
-        <div class="card-data">
-            <p><strong>Producto:</strong> {{ p.nombreproducto }}</p>
-            <p><strong>Fecha:</strong> {{ p.fechaproducto|date:"d/m/Y" }}</p>
-            <p><strong>Descripción:</strong> {{ p.descripcion }}</p>
-        </div> 
+        <div class="card-data" style="grid-column: 1 / -1; display:block">
+
+            <div class="card-main-title">
+                {{ p.nombreproducto }}
+            </div>
+
+            <div class="card-text">
+                {{ p.descripcion }}
+            </div>
+
+            <div class="card-meta">
+                <p>{{ p.fechaproducto|date:"d/m/Y" }}</p>
+            </div>
+
+        </div>
+
         {% if p.imagen %}
         <div class="card-image">
             <img src="{{ p.imagen.url }}">
