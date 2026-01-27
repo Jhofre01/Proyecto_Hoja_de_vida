@@ -66,6 +66,9 @@ class ExperienciaLaboral(models.Model):
     activarparaqueveaenfront = models.BooleanField(default=True)
     rutacertificado = models.CharField(max_length=100)
 
+    imagen = CloudinaryField('imagen', null=True, blank=True)
+
+
     def clean(self):
         hoy = timezone.now().date()
         if self.fechainiciogestion and self.fechainiciogestion > hoy:
@@ -173,6 +176,11 @@ class ProductoLaboral(models.Model):
 
 
 class VentaGarage(models.Model):
+    ESTADO_CHOICES = [
+        ('BUENO', 'Bueno'),
+        ('REGULAR', 'Regular'),
+    ]
+
     persona = models.ForeignKey(
         DatosPersonales,
         on_delete=models.CASCADE,
@@ -180,12 +188,16 @@ class VentaGarage(models.Model):
     )
 
     nombreproducto = models.CharField(max_length=100)
-    estadoproducto = models.CharField(max_length=40)
+    estadoproducto = models.CharField(
+        max_length=20,
+        choices=ESTADO_CHOICES
+    )
     descripcion = models.CharField(max_length=100)
     valordebien = models.DecimalField(max_digits=7, decimal_places=2)
 
     activarparaqueveaenfront = models.BooleanField(default=True)
     imagen = CloudinaryField('imagen', null=True, blank=True)
+
 
 class SeccionPagina(models.Model):
     mostrar_experiencia = models.BooleanField(default=True)

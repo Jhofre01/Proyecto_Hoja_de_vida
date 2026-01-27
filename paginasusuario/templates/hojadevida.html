@@ -339,6 +339,11 @@ h2 {
     </p>
 
     <p><strong>Funciones:</strong> {{ e.descripcionfunciones }}</p>
+
+    {% if e.imagen %}
+    <img src="{{ e.imagen.url }}">
+    {% endif %}
+
 </div>
 {% empty %}
 <p class="mensaje-vacio">No hay experiencia registrada</p>
@@ -447,7 +452,7 @@ h2 {
 <div class="card">
     <p><strong>Producto:</strong> {{ v.nombreproducto }}</p>
     <p><strong>Estado:</strong> {{ v.estadoproducto }}</p>
-    <p><strong>Valor:</strong> ${{ v.valordebien }}</p>
+    <p><strong>Estado:</strong> {{ v.get_estadoproducto_display }}</p>
     <p><strong>Descripción:</strong> {{ v.descripcion }}</p>
 
     {% if v.imagen %}
