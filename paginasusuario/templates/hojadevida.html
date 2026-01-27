@@ -1026,12 +1026,49 @@ h2 {
         <h3 style="margin-top:0;">Incluir en el PDF</h3>
 
         <label><input type="checkbox" value="dp" checked> Datos personales</label><br>
-        <label><input type="checkbox" value="exp" checked> Experiencia laboral</label><br>
-        <label><input type="checkbox" value="rec" checked> Reconocimientos</label><br>
-        <label><input type="checkbox" value="cur" checked> Cursos</label><br>
-        <label><input type="checkbox" value="pa" checked> Productos académicos</label><br>
-        <label><input type="checkbox" value="pl" checked> Productos laborales</label><br>
-        <label><input type="checkbox" value="vg" checked> Venta garage</label>
+        
+        {% if config.mostrar_experiencia %}
+        <label>
+            <input type="checkbox" value="exp" checked>
+            Experiencia laboral
+        </label><br>
+        {% endif %}
+
+        {% if config.mostrar_reconocimientos %}
+        <label>
+            <input type="checkbox" value="rec" checked>
+            Reconocimientos
+        </label><br>
+        {% endif %}
+
+        {% if config.mostrar_cursos %}
+        <label>
+            <input type="checkbox" value="cur" checked>
+            Cursos
+        </label><br>
+        {% endif %}
+
+        {% if config.mostrar_productos_academicos %}
+        <label>
+            <input type="checkbox" value="pa" checked>
+            Productos académicos
+        </label><br>
+        {% endif %}
+
+        {% if config.mostrar_productos_laborales %}
+        <label>
+            <input type="checkbox" value="pl" checked>
+            Productos laborales
+        </label><br>
+        {% endif %}
+
+        {% if config.mostrar_venta_garage %}
+        <label>
+            <input type="checkbox" value="vg" checked>
+            Venta garage
+        </label>
+        {% endif %}
+
 
         <div style="margin-top:20px; text-align:right;">
             <button onclick="cerrarModalPDF()">Cancelar</button>
